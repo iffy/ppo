@@ -18,7 +18,7 @@ import re
 import json
 import yaml
 from collections import defaultdict
-from ppo import parse
+from ppo.parser import parse
 
 r_notalpha = re.compile(r'[^a-zA-Z0-9]', re.S | re.M)
 
@@ -38,7 +38,8 @@ for f in all_files:
 
 
 class TestEverything(TestCase):
-    pass
+    
+    maxDiff = None
 
 
 def makeTestFunc(name, infile, outfile):
@@ -56,7 +57,7 @@ def makeTestFunc(name, infile, outfile):
             # plain text
             expected_output = open(outfile, 'rb').read()
 
-        self.assertEqual(parsed, expected_output)
+        self.assertEqual(expected_output, parsed)
     return func
 
 for name, files in pairs.items():

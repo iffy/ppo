@@ -1,8 +1,10 @@
 import os
 import inspect
+import sys
+import importlib
 from StringIO import StringIO
 
-import sys
+from ppo import plugins
 
 class ParseError(Exception): pass
 class NoWillingParsers(Exception): pass
@@ -43,7 +45,7 @@ class Parser(object):
                 'given input.')
 
         # highest numerical probability first
-        chosen = sorted(chosen, key=lambda x:-x[0])
+        chosen = [x[1] for x in sorted(chosen, key=lambda x:-x[0])]
         first_exception = None
         parsed = None
         for plugin in chosen:
@@ -51,58 +53,47 @@ class Parser(object):
             try:
                 parsed = plugin.parse(seekable)
             except Exception as e:
-                log('Error parsing with %r plugin:\n%s' % (plugin.__name__, e))
+                log('Error parsing with %r plugin:\n%s' % (
+                    plugin.__class__.__name__, e))
                 if not first_exception:
                     first_exception = e
 
-        if not parsed:
+        if parsed is None:
             raise Exception('Failed to parse using the following plugins: %s' % (
-                ', '.join([x.__name__ for x in chosen])))
+                ', '.join([x.__class__.__name__ for x in chosen])))
         return parsed
 
 
-
-class ParserPlugin(object):
-    """
-    Base class for parser plugins.
-    """
-
-    def readProbability(self, instream):
-        """
-        Return a number between 0 and 100 indicating how confident
-        this plugin is that it was made to read the given data.
-        """
-        NotImplemented
-
-
-    def parse(self, instream):
-        """
-        Parse the given stream into a Python dict/list/string/integer
-        """
-        NotImplemented
-
-
-
-def getPlugins(plugin_dir):
+def getPlugins(package):
     """
     Given a directory, get all the plugins out of the python modules inside it.
     """
-    files = os.listdir(plugin_dir)
+    if package in sys.modules:
+        imported = sys.modules[package]
+    elif package not in sys.modules:
+        imported = __import__(package, globals(), locals())
+    item = getattr(imported, package.split('.')[-1])
+    path = os.path.abspath(os.path.dirname(item.__file__))
+    
+    files = os.listdir(path)
     for fname in files:
         if fname.endswith('.py') and not(fname.startswith('_')):
-            ldict = {}
-            execfile(os.path.join(plugin_dir, fname), globals(), ldict)
-            for value in ldict.values():
-                if issubclass(value, ParserPlugin) and value != ParserPlugin:
-                    yield value()
+            module_name = '.'.join([package, os.path.basename(fname).split('.')[0]])
+            imported = importlib.import_module(module_name)
+            for name in dir(imported):
+                item = getattr(imported, name)
+                if inspect.isclass(item) and \
+                        issubclass(item, plugins.ParserPlugin) and \
+                        item != plugins.ParserPlugin:
+                    yield item()
 
 
-def createParser(plugin_dir):
+def createParser(package):
     parser = Parser()
-    for plugin in getPlugins(plugin_dir):
+    for plugin in getPlugins(package):
         parser.addPlugin(plugin)
     return parser
 
 
-parser = createParser(os.path.join(os.path.dirname(__file__), 'parse_plugins'))
+parser = createParser('ppo.parse_plugins')
 parse = parser.parse
