@@ -1,6 +1,8 @@
 import argparse
 import sys
 import yaml
+import json
+import os
 
 from StringIO import StringIO
 
@@ -9,6 +11,14 @@ from ppo.parser import parse, parser, NoWillingParsers
 ap = argparse.ArgumentParser(
     description="Reads from stdin and produces YAML output "
     "if it's something `ppo` knows how to interpret. ")
+
+ap.add_argument('-f', '--format',
+    default=os.environ.get('PPO_OUTPUT_FORMAT', 'json'),
+    choices=['json', 'yaml'],
+    help='Output format.'
+         '  You can also set this with the PPO_OUTPUT_FORMAT '
+         'environment variable.'
+         '  (default: %(default)s)')
 
 ap.add_argument('-p', '--passthru-unknown', action='store_true',
     help="If given, then input that isn't able to be parsed will be "
@@ -37,4 +47,7 @@ def run():
         else:
             raise
 
-    print yaml.dump(parsed, default_flow_style=False)
+    if args.format == 'yaml':
+        print yaml.dump(parsed, default_flow_style=False)
+    elif args.format == 'json':
+        print json.dumps(parsed)
