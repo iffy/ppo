@@ -4,6 +4,10 @@ class ParserPlugin(object):
     Base class for parser plugins.
     """
 
+    @property
+    def name(self):
+        return self.__class__.__name__
+
     def readProbability(self, instream):
         """
         Return a number between 0 and 100 indicating how confident

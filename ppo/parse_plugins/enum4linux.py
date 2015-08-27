@@ -332,7 +332,7 @@ class enum4linuxPlugin(plugins.ParserPlugin):
     I parse enum4linux output
     """
 
-    state = 'init'
+    name = 'enum4linux'
 
     def readProbability(self, instream):
         first_part = instream.read(200)

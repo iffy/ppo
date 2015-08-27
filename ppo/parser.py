@@ -25,6 +25,10 @@ class Parser(object):
         self._plugins.append(plugin)
 
 
+    def listPluginNames(self):
+        return [x.name for x in self._plugins]
+
+
     def parse(self, infile):
         # XXX I don't love reading everything into memory.  It would be
         # better to wrap this file in an always seekable stream that
@@ -54,13 +58,13 @@ class Parser(object):
                 parsed = plugin.parse(seekable)
             except Exception as e:
                 log('Error parsing with %r plugin:\n%s' % (
-                    plugin.__class__.__name__, e))
+                    plugin.name, e))
                 if not first_exception:
                     first_exception = e
 
         if parsed is None:
             raise Exception('Failed to parse using the following plugins: %s' % (
-                ', '.join([x.__class__.__name__ for x in chosen])))
+                ', '.join([x.name for x in chosen])))
         return parsed
 
 
