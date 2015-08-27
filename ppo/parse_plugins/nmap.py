@@ -50,6 +50,10 @@ class NmapXMLParser(plugins.ParserPlugin):
                 ret['ports'] = [self._parsePort(x) for x in tag]
             elif tag.tag == 'hostnames':
                 ret['hostnames'] = []
+            elif tag.tag == 'hostscript':
+                if 'hostscripts' not in ret:
+                    ret['hostscripts'] = []
+                ret['hostscripts'].append(self._parseHostScripts(tag))
             else:
                 ret[tag.tag] = self._parseNode(tag)
         return ret
@@ -59,6 +63,14 @@ class NmapXMLParser(plugins.ParserPlugin):
         ret['port'] = int(ret.pop('portid'))
         for child in port:
             ret[child.tag] = self._parseNode(child)
+        return ret
+
+    def _parseHostScripts(self, xml):
+        script = xml.find('.//script')
+        ret = dict(script.attrib)
+        data = ret['data'] = {}
+        for elem in script:
+            data[elem.attrib['key']] = elem.text
         return ret
 
 

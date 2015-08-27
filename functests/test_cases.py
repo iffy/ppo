@@ -17,6 +17,7 @@ import os
 import re
 import json
 import yaml
+import difflib
 from collections import defaultdict
 from ppo.parser import parse
 
@@ -42,6 +43,13 @@ class TestEverything(TestCase):
     maxDiff = None
 
 
+def diffStrings(a, b, alabel=None, blabel=None):
+    alines = [x+'\n' for x in a.split('\n')]
+    blines = [x+'\n' for x in b.split('\n')]
+    for line in difflib.unified_diff(alines, blines, alabel, blabel):
+        yield line
+
+
 def makeTestFunc(name, infile, outfile):
     def func(self):
         fh_i = open(infile, 'rb')
@@ -57,7 +65,11 @@ def makeTestFunc(name, infile, outfile):
             # plain text
             expected_output = open(outfile, 'rb').read()
 
-        self.assertEqual(expected_output, parsed)
+        # seeing differences in YAML is easier than python dicts
+        expected_yaml = yaml.dump(expected_output, default_flow_style=False)
+        actual_yaml = yaml.dump(parsed, default_flow_style=False)
+        diff = diffStrings(expected_yaml, actual_yaml, 'expected', 'actual')
+        self.assertEqual(expected_yaml, actual_yaml, '\n' + ''.join(diff))
     return func
 
 for name, files in pairs.items():
