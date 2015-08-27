@@ -4,7 +4,7 @@ If you'd like `ppo` to be able to parse the output of a program:
 
 Clone this repo:
 
-        git clone git@github.com:iffy/ppo.git
+    git clone git@github.com:iffy/ppo.git
 
 Create a branch
 
