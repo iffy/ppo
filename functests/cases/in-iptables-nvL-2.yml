@@ -1,0 +1,12 @@
+Chain INPUT (policy ACCEPT 3930 packets, 449K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 ACCEPT     all  --  *      *       192.168.1.205        0.0.0.0/0           
+ 3113  128K ACCEPT     all  --  *      *       192.168.13.206       0.0.0.0/0           
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 4352 packets, 523K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+ 4074  183K ACCEPT     all  --  *      *       0.0.0.0/0            192.168.13.206      
+

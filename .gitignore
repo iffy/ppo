@@ -3,3 +3,4 @@ build
 _trial_temp/
 .tox/
 MANIFEST
+*.egg-info
