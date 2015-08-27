@@ -52,7 +52,56 @@ nmaprun:
   xmloutputversion: '1.04'
 ```
 
-Nmap already has pretty nice output.  `ppo` was made for other programs that have garbage output.
+And here's `iptables -L`:
+
+    iptables -nvL | ppo
+
+```yml
+INPUT:
+  ACCEPT:
+    packets: "3930"
+    bytes: "449K"
+  items:
+    - pkts: "0"
+      bytes: "0"
+      target: ACCEPT
+      prot: all
+      opt: --
+      in: "*"
+      out: "*"
+      source: 192.168.1.205
+      destination: 0.0.0.0/0
+    - pkts: "3113"
+      bytes: "128K"
+      target: ACCEPT
+      prot: all
+      opt: --
+      in: "*"
+      out: "*"
+      source: 192.168.13.206
+      destination: 0.0.0.0/0
+FORWARD:
+  ACCEPT:
+    packets: "0"
+    bytes: "0"
+  items: []
+OUTPUT:
+  ACCEPT:
+    packets: "4352"
+    bytes: "523K"
+  items:
+    - pkts: "4074"
+      bytes: "183K"
+      target: ACCEPT
+      prot: all
+      opt: --
+      in: "*"
+      out: "*"
+      source: 0.0.0.0/0
+      destination: 192.168.13.206
+```
+
+
 
 
 # Supported programs #
