@@ -3,13 +3,13 @@
 `ppo` parses output from commands that don't have nicely parsed output.  Here's a picture:
 
 
-    whatever output the program gives -> ppo -> YAML/JSON/XML
+    whatever output the program gives -> ppo -> YAML/JSON
 
 # Example #
 
 For instance, here's parsing `nmap` xml output:
 
-    nmap -sP 192.168.13.205 -oX - | ppo
+    nmap -sP 192.168.13.205 -oX - | ppo -f yaml
 
 Which produces:
 
@@ -54,7 +54,7 @@ nmaprun:
 
 And here's `iptables -L`:
 
-    iptables -nvL | ppo
+    iptables -nvL | ppo -f yaml
 
 ```yml
 INPUT:
@@ -101,7 +101,22 @@ OUTPUT:
       destination: 192.168.13.206
 ```
 
+## Use it with jq ##
 
+By default, `ppo` renders JSON, making it nice to use with [jq](https://stedolan.github.io/jq/):
+
+    # iptables -nvL | ppo | jq '.INPUT.items[] | select(.source == "192.168.1.205")'
+    {
+      "opt": "--",
+      "destination": "0.0.0.0/0",
+      "target": "ACCEPT",
+      "prot": "all",
+      "bytes": "0",
+      "source": "192.168.1.205",
+      "in": "*",
+      "pkts": "0",
+      "out": "*"
+    }
 
 
 # Supported programs #
