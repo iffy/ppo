@@ -1,0 +1,123 @@
+WARNING: ldapsearch is not in your path.  Check that package is installed and your PATH is sane.
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Tue Aug 25 17:53:35 2015
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 192.168.13.201
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ====================================================== 
+|    Enumerating Workgroup/Domain on 192.168.13.201    |
+ ====================================================== 
+[+] Got domain/workgroup name: THINC
+
+ ============================================== 
+|    Nbtstat Information for 192.168.13.201    |
+ ============================================== 
+Looking up status of 192.168.13.201
+	ALICE           <00> -         B <ACTIVE>  Workstation Service
+	THINC           <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+	ALICE           <03> -         B <ACTIVE>  Messenger Service
+	ALICE           <20> -         B <ACTIVE>  File Server Service
+	THINC           <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+
+	MAC Address = 00-50-56-AF-56-8C
+
+ ======================================= 
+|    Session Check on 192.168.13.201    |
+ ======================================= 
+[+] Server 192.168.13.201 allows sessions using username '', password ''
+
+ ============================================= 
+|    Getting domain SID for 192.168.13.201    |
+ ============================================= 
+Domain Name: THINC
+Domain Sid: S-1-5-21-4254429285-501146052-1604752251
+[+] Host is part of a domain (not a workgroup)
+
+ ======================================== 
+|    OS information on 192.168.13.201    |
+ ======================================== 
+[+] Got OS info for 192.168.13.201 from smbclient: Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+[+] Got OS info for 192.168.13.201 from srvinfo:
+	192.168.13.201 Wk Sv NT PtB         
+	platform_id     :	500
+	os version      :	5.1
+	server type     :	0x11003
+
+ =============================== 
+|    Users on 192.168.13.201    |
+ =============================== 
+[E] Couldn't find users using querydispinfo: NT_STATUS_ACCESS_DENIED
+
+[E] Couldn't find users using enumdomusers: NT_STATUS_ACCESS_DENIED
+
+ =========================================== 
+|    Share Enumeration on 192.168.13.201    |
+ =========================================== 
+Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	IPC$            IPC       Remote IPC
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+
+	Server               Comment
+	---------            -------
+
+	Workgroup            Master
+	---------            -------
+
+[+] Attempting to map shares on 192.168.13.201
+//192.168.13.201/IPC$	Mapping: OK	Listing: DENIED
+//192.168.13.201/ADMIN$	Mapping: DENIED, Listing: N/A
+//192.168.13.201/C$	Mapping: DENIED, Listing: N/A
+
+ ====================================================== 
+|    Password Policy Information for 192.168.13.201    |
+ ====================================================== 
+[E] Can't connect to host with supplied credentials.
+
+[E] Failed to get password policy with rpcclient
+
+
+ ================================ 
+|    Groups on 192.168.13.201    |
+ ================================ 
+
+[+] Getting builtin groups:
+
+[+] Getting builtin group memberships:
+
+[+] Getting local groups:
+
+[+] Getting local group memberships:
+
+[+] Getting domain groups:
+
+[+] Getting domain group memberships:
+
+ ========================================================================= 
+|    Users on 192.168.13.201 via RID cycling (RIDS: 500-550,1000-1050)    |
+ ========================================================================= 
+[E] Couldn't get SID: NT_STATUS_ACCESS_DENIED.  RID cycling not possible.
+[I] Found new SID: S-1-5-32
+[I] Found new SID: S-1-5-21-1085031214-1677128483-839522115
+[+] Enumerating users using SID S-1-5-32 and logon username '', password ''
+[+] Enumerating users using SID S-1-5-21-1085031214-1677128483-839522115 and logon username '', password ''
+
+ =============================================== 
+|    Getting printer info for 192.168.13.201    |
+ =============================================== 
+Could not initialise spoolss. Error was NT_STATUS_OBJECT_NAME_NOT_FOUND
+
+
+enum4linux complete on Tue Aug 25 17:58:16 2015
+

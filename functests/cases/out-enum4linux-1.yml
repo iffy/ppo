@@ -1,0 +1,69 @@
+host:
+  ipv4: 10.0.5.1
+  known_usernames:
+    - administrator
+    - guest
+    - krbtgt
+    - domain admins
+    - root
+    - bin
+    - none
+  domain:
+    name: JIPPY
+    sid: S-1-5-21-4254429285-501146052-1604752251
+  mac_address: 00-05-56-AF-56-8C
+  os:
+    name: Windows 5.1
+    server: Windows 2000 LAN Manager
+    srvinfo: Wk Sv NT PtB
+    platform_id: 500
+    version: 5.1
+    type: 0x11003
+  users:
+  nbtstat:
+    - name: JAMAL
+      suffix: 00
+      group_name: false
+      node_type: B
+      status: ACTIVE
+      description: Workstation Service
+    - name: JIPPY
+      suffix: 00
+      group_name: true
+      node_type: B
+      status: ACTIVE
+      description: Domain/Workgroup Name
+    - name: JAMAL
+      suffix: 03
+      group_name: false
+      node_type: B
+      status: ACTIVE
+      description: Messenger Service
+    - name: JAMAL
+      suffix: 20
+      group_name: false
+      node_type: B
+      status: ACTIVE
+      description: File Server Service
+    - name: JIPPY
+      suffix: 1e
+      group_name: true
+      node_type: B
+      status: ACTIVE
+      description: Browser Service Elections
+  shares:
+    - name: IPC$
+      type: IPC
+      comment: Remote IPC
+    - name: ADMIN$
+      type: Disk
+      comment: Remote Admin
+    - name: C$
+      type: Disk
+      comment: Default share
+  servers: []
+  workgroups: []
+  password_policy:
+  groups:
+  rid_users:
+  printer:
