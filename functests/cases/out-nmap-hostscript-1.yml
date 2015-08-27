@@ -1,37 +1,37 @@
 nmaprun:
   scanner: nmap
   args: "nmap -p139,445 --script smb-os-discovery.nse -oX smb-os.xml 10.0.1.5"
-  start: "1440521014"
+  start: 1440521014
   startstr: "Tue Aug 25 12:43:34 2015"
   version: "6.47"
   xmloutputversion: "1.04"
   scaninfo:
     type: "syn"
     protocol: "tcp"
-    numservices: "2"
+    numservices: 2
     services: "139,445"
   verbose:
-    level: "0"
+    level: 0
   debugging:
-    level: "0"
+    level: 0
   runstats:
     finished:
-      elapsed: '63.91'
+      elapsed: 63.91
       exit: success
       summary: "Nmap done at Tue Aug 25 12:44:38 2015; 17 IP addresses (17 hosts up) scanned in 63.91 seconds"
-      time: '1440521078'
+      time: 1440521078
       timestr: Tue Aug 25 12:44:38 2015
     hosts:
-      down: '0'
-      total: '1'
-      up: '1'
+      down: 0
+      total: 1
+      up: 1
 hosts:
-  - starttime: "1440521014"
-    endtime: "1440521078"
+  - starttime: 1440521014
+    endtime: 1440521078
     status:
       state: "up"
       reason: "arp-response"
-      reason_ttl: "0"
+      reason_ttl: 0
     addresses:
       - addr: "10.0.1.5"
         addrtype: "ipv4"
@@ -40,9 +40,9 @@ hosts:
         vendor: "VMware"
     hostnames: []
     times:
-      srtt: "78741"
-      rttvar: "44758"
-      to: "257773"
+      srtt: 78741
+      rttvar: 44758
+      to: 257773
     hostscripts:
       - id: "smb-os-discovery"
         output: "\n  OS: Windows XP (Windows 2000 LAN Manager)\n  OS CPE: cpe:/o:microsoft:windows_xp::-\n  Computer name: alice\n  NetBIOS computer name: ALICE\n  Domain name: thinc.local\n  Forest name: thinc.local\n  FQDN: alice.thinc.local\n  System time: 2015-08-25T08:53:11+01:00\n"
@@ -62,18 +62,18 @@ hosts:
         state:
           state: "open"
           reason: "syn-ack"
-          reason_ttl: "128"
+          reason_ttl: 128
         service:
           name: "netbios-ssn"
           method: "table"
-          conf: "3"
+          conf: 3
       - protocol: "tcp"
         port: 445
         state:
           state: "open"
           reason: "syn-ack"
-          reason_ttl: "128"
+          reason_ttl: 128
         service:
           name: "microsoft-ds"
           method: "table"
-          conf: "3"
+          conf: 3

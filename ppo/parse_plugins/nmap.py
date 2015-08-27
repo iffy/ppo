@@ -2,6 +2,19 @@ from ppo import plugins
 
 from lxml import etree
 
+def mapType(data, mapping):
+    """
+    Map values in `data` dict to those described in `mapping` dict
+    """
+    ret = {}
+    for key in data:
+        t = mapping.get(key)
+        if t:
+            ret[key] = t(data[key])
+        else:
+            ret[key] = data[key]
+    return ret
+
 
 class NmapXMLParser(plugins.ParserPlugin):
     """
@@ -10,7 +23,7 @@ class NmapXMLParser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if 'nmap' in first_part:
+        if 'nmap' in first_part and 'xml' in first_part:
             return 50
 
     def parse(self, instream):
@@ -20,7 +33,9 @@ class NmapXMLParser(plugins.ParserPlugin):
         results = {}
 
         nmaprun = results['nmaprun'] = {}
-        nmaprun.update(root.attrib)
+        nmaprun.update(mapType(root.attrib, {
+            'start': int,
+        }))
 
         hosts = results['hosts'] = []
         
@@ -30,21 +45,44 @@ class NmapXMLParser(plugins.ParserPlugin):
             elif child.tag == 'runstats':
                 nmaprun['runstats'] = runstats = dict(child.attrib)
                 for stat in child:
-                    runstats[stat.tag] = dict(stat.attrib)
+                    mapping = {
+                        'finished': {
+                            'elapsed': float,
+                            'time': int,
+                        },
+                        'hosts': {
+                            'down': int,
+                            'total': int,
+                            'up': int,
+                        }
+                    }.get(stat.tag, {})
+                    runstats[stat.tag] = self._parseNode(stat, mapping)
             else:
-                nmaprun[child.tag] = self._parseNode(child)
+                mapping = {
+                    'scaninfo': {
+                        'numservices': int,
+                    },
+                    'verbose': {
+                        'level': int,
+                    },
+                    'debugging': {
+                        'level': int,
+                    },
+                }.get(child.tag, {})
+                nmaprun[child.tag] = self._parseNode(child, mapping)
         return results
 
     def _parseHost(self, host):
-        ret = dict(host.attrib)
+        ret = mapType(host.attrib, {
+            'endtime': int,
+            'starttime': int,
+        })
         ret.update({
             'addresses': [],
         })
 
         for tag in host:
-            if tag.tag == 'status':
-                ret['status'] = self._parseNode(tag)
-            elif tag.tag == 'address':
+            if tag.tag == 'address':
                 ret['addresses'].append(self._parseNode(tag))
             elif tag.tag == 'ports':
                 ret['ports'] = [self._parsePort(x) for x in tag]
@@ -55,14 +93,32 @@ class NmapXMLParser(plugins.ParserPlugin):
                     ret['hostscripts'] = []
                 ret['hostscripts'].append(self._parseHostScripts(tag))
             else:
-                ret[tag.tag] = self._parseNode(tag)
+                mapping = {
+                    'status': {
+                        'reason_ttl': int,
+                    },
+                    'times': {
+                        'rttvar': int,
+                        'srtt': int,
+                        'to': int,
+                    }
+                }.get(tag.tag, {})
+                ret[tag.tag] = self._parseNode(tag, mapping)
         return ret
 
     def _parsePort(self, port):
         ret = dict(port.attrib)
         ret['port'] = int(ret.pop('portid'))
         for child in port:
-            ret[child.tag] = self._parseNode(child)
+            mapping = {
+                'service': {
+                    'conf': int,
+                },
+                'state': {
+                    'reason_ttl': int,
+                }
+            }.get(child.tag, {})
+            ret[child.tag] = self._parseNode(child, mapping)
         return ret
 
     def _parseHostScripts(self, xml):
@@ -74,8 +130,9 @@ class NmapXMLParser(plugins.ParserPlugin):
         return ret
 
 
-    def _parseNode(self, node):
-        ret = dict(node.attrib)
+    def _parseNode(self, node, mapping=None):
+        mapping = mapping or {}
+        ret = mapType(node.attrib, mapping)
         children = []
         for child in node:
             children.append(self._parseNode(child))
