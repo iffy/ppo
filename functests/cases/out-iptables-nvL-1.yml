@@ -1,0 +1,33 @@
+INPUT:
+  ACCEPT:
+    packets: 47
+    bytes: 4639
+  items:
+    - packets: 20
+      bytes: 1817
+      target: ACCEPT
+      prot: all
+      opt:
+      in: *
+      out: *
+      source: 192.168.13.206
+      destination: 0.0.0.0/0
+FORWARD:
+  ACCEPT:
+    packets: 0
+    bytes: 0
+  items: []
+OUTPUT:
+  ACCEPT:
+    packets: 55
+    bytes: 7487
+  items:
+    - packets: 29
+      bytes: 2659
+      target: ACCEPT
+      prot: all
+      opt:
+      in: *
+      out: *
+      source: 0.0.0.0/0
+      destination: 192.168.13.206
