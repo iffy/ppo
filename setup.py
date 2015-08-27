@@ -13,7 +13,7 @@ setup(
         'ppo', 'ppo.test',
     ],
     install_requires=[
-        'yaml',
+        'PyYaml',
         'lxml',
         'importlib',
     ],
