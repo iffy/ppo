@@ -57,5 +57,5 @@ Nmap already has pretty nice output.  `ppo` was made for other programs that hav
 
 # Supported programs #
 
-See a list of parseable formats with `ppo --ls`.
+See a list of parseable formats with `ppo --ls` or look in [ppo/parse_plugins](ppo/parse_plugins/).
 
