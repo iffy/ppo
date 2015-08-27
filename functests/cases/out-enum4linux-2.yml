@@ -1,0 +1,299 @@
+ipv4: 10.1.4.2
+username: ''
+password: ''
+known_usernames:
+  - administrator
+  - guest
+  - krbtgt
+  - domain admins
+  - root
+  - bin
+  - none
+domain name: WORKGROUP
+domain sid:
+nbtstat:
+  - name: SRV2
+    suffix: "00"
+    group: false
+    node_type: M
+    status: ACTIVE
+    description: Workstation Service
+  - name: SRV2
+    suffix: "03"
+    group: false
+    node_type: M
+    status: ACTIVE
+    description: Messenger Service
+  - name: WORKGROUP
+    suffix: "00"
+    group: true
+    node_type: M
+    status: ACTIVE
+    description: Domain/Workgroup Name
+  - name: WORKGROUP
+    suffix: "1e"
+    group: true
+    node_type: M
+    status: ACTIVE
+    description: Browser Service Elections
+  - name: SRV2
+    suffix: "20"
+    group: false
+    node_type: M
+    status: ACTIVE
+    description: File Server Service
+  - name: WORKGROUP
+    suffix: "1d"
+    group: false
+    node_type: M
+    status: ACTIVE
+    description: Master Browser
+  - name: "..__MSBROWSE__."
+    suffix: "01"
+    group: true
+    node_type: M
+    status: ACTIVE
+    description: Master Browser
+mac_address: 00-50-56-AF-63-60
+os:
+  name: Windows 5.0
+  server: Windows 2000 LAN Manager
+  srvinfo: Wk Sv Sql NT SNT LMB
+  platform_id: "500"
+  os version: "5.0"
+  server type: "0x49007"
+users:
+  - account: admin
+    index: "0x1"
+    rid: "0x3ef"
+    acb: "0x00000010"
+    name:
+    desc:
+  - account: Administrator
+    index: "0x2"
+    rid: "0x1f4"
+    acb: "0x00000210"
+    name:
+    desc: Built-in account for administering the computer/domain
+  - account: IUSR_SRV2
+    index: "0x9"
+    rid: "0x3ea"
+    acb: "0x00000214"
+    name: "Internet Guest Account"
+    desc: "Built-in account for anonymous access to Internet Information Services"
+shares:
+  - name: IPC$
+    type: IPC
+    comment: Remote IPC
+    mapping: OK
+    listing: DENIED
+  - name: share
+    type: Disk
+    comment: ''
+    mapping: DENIED
+    listing: N/A
+  - name: ADMIN$
+    type: Disk
+    comment: Remote Admin
+    mapping: DENIED
+    listing: N/A
+  - name: C$
+    type: Disk
+    comment: Default share
+    mapping: DENIED
+    listing: N/A
+servers:
+  - name: BETHANY
+    comment: ''
+  - name: BOB
+    comment: ''
+  - name: BOB2
+    comment: ''
+  - name: HELPDESK
+    comment: HELPDESK
+  - name: IT-JOE
+    comment: ''
+  - name: JEFF
+    comment: ''
+  - name: KEVIN-PC
+    comment: ''
+  - name: MIKE
+    comment: mike
+  - name: OFFSEC-LAB
+    comment: ''
+  - name: SRV2
+    comment: ''
+workgroups:
+  - name: ACME
+    master: ORACLE
+  - name: BOB
+    master: SUFFERANCE
+  - name: MSHOME
+    master: UBUNTU7
+password_policy:
+  - name: SRV2
+    min_length: null
+    history_length: null
+    max_age: "42 days 22 hours 47 minutes"
+    complexity_flags: "000000"
+    refuse_change: 0
+    store_cleartext: 0
+    lockout_admins: 0
+    no_clear_change: 0
+    no_anon_change: 0
+    complex: 0
+    min_age: null
+    reset_lockout_counter: 30 minutes
+    locked_account_duration: 30 minutes
+    lockout_threshold: null
+    forced_log_off_time: null
+groups:
+  - name: Administrators
+    rid: "0x220"
+    type: builtin
+    members:
+      - SRV2\Administrator
+      - SRV2\backup
+  - name: Backup Operators
+    rid: "0x227"
+    type: builtin
+  - name: Guests
+    rid: "0x222"
+    type: builtin
+    members:
+      - SRV2\Guest
+      - SRV2\TsInternetUser
+      - SRV2\IUSR_SRV2
+      - SRV2\IWAM_SRV2
+  - name: Power Users
+    rid: "0x223"
+    type: builtin
+  - name: Replicator
+    rid: "0x228"
+    type: builtin
+  - name: Users
+    rid: "0x221"
+    type: builtin
+    members:
+      - NT AUTHORITY\INTERACTIVE
+      - NT AUTHORITY\Authenticated Users
+      - SRV2\sqlusr
+      - SRV2\backup
+      - SRV2\admin
+      - SRV2\alice
+      - SRV2\david
+      - SRV2\john
+      - SRV2\lisa
+      - SRV2\mark
+      - SRV2\gary
+      - SRV2\nick
+      - SRV2\lee
+      - SRV2\ned
+      - SRV2\homer
+      - SRV2\todd
+
+  - name: None
+    rid: "0x201"
+    type: domain
+    members:
+      - SRV2\Administrator
+      - SRV2\Guest
+      - SRV2\TsInternetUser
+      - SRV2\IUSR_SRV2
+      - SRV2\IWAM_SRV2
+      - SRV2\sqlusr
+      - SRV2\backup
+      - SRV2\admin
+      - SRV2\alice
+      - SRV2\david
+      - SRV2\john
+      - SRV2\lisa
+      - SRV2\mark
+      - SRV2\gary
+      - SRV2\nick
+      - SRV2\lee
+      - SRV2\ned
+      - SRV2\homer
+      - SRV2\todd
+rid_users:
+  - sid: S-1-5-21-1606980848-73586283-839522115
+    username: ''
+    password: ''
+    users:
+      - sid: S-1-5-21-1606980848-73586283-839522115-500
+        name: SRV2\Administrator
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-501
+        name: SRV2\Guest
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-513
+        name: SRV2\None
+        description: Domain Group
+      - sid: S-1-5-21-1606980848-73586283-839522115-1000
+        name: SRV2\TsInternetUser
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1002
+        name: SRV2\IUSR_SRV2
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1003
+        name: SRV2\IWAM_SRV2
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1005
+        name: SRV2\sqlusr
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1006
+        name: SRV2\backup
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1007
+        name: SRV2\admin
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1008
+        name: SRV2\alice
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1009
+        name: SRV2\david
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1010
+        name: SRV2\john
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1011
+        name: SRV2\lisa
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1012
+        name: SRV2\mark
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1013
+        name: SRV2\gary
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1014
+        name: SRV2\nick
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1015
+        name: SRV2\lee
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1016
+        name: SRV2\ned
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1017
+        name: SRV2\homer
+        description: Local User
+      - sid: S-1-5-21-1606980848-73586283-839522115-1018
+        name: SRV2\todd
+        description: Local User
+  - sid: S-1-5-32
+    username: 'foo'
+    password: ''
+    users:
+      - sid: S-1-5-32-544
+        name: BUILTIN\Administrators
+        description: Local Group
+      - sid: S-1-5-32-545
+        name: BUILTIN\Users
+        description: Local Group
+      - sid: S-1-5-32-546
+        name: BUILTIN\Guests
+        description: Local Group
+      - sid: S-1-5-32-547
+        name: BUILTIN\Power Users
+        description: Local Group
+printers: []

@@ -4,7 +4,7 @@ Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux
  ========================== 
 |    Target Information    |
  ========================== 
-Target ........... 192.168.13.201
+Target ........... 10.0.5.1
 RID Range ........ 500-550,1000-1050
 Username ......... ''
 Password ......... ''
@@ -12,56 +12,56 @@ Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
 
 
  ====================================================== 
-|    Enumerating Workgroup/Domain on 192.168.13.201    |
+|    Enumerating Workgroup/Domain on 10.0.5.1    |
  ====================================================== 
-[+] Got domain/workgroup name: THINC
+[+] Got domain/workgroup name: JIPPY
 
  ============================================== 
-|    Nbtstat Information for 192.168.13.201    |
+|    Nbtstat Information for 10.0.5.1    |
  ============================================== 
-Looking up status of 192.168.13.201
-	ALICE           <00> -         B <ACTIVE>  Workstation Service
-	THINC           <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
-	ALICE           <03> -         B <ACTIVE>  Messenger Service
-	ALICE           <20> -         B <ACTIVE>  File Server Service
-	THINC           <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+Looking up status of 10.0.5.1
+	JAMAL           <00> -         B <ACTIVE>  Workstation Service
+	JIPPY           <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+	JAMAL           <03> -         B <ACTIVE>  Messenger Service
+	JAMAL           <20> -         B <ACTIVE>  File Server Service
+	JIPPY           <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
 
 	MAC Address = 00-50-56-AF-56-8C
 
  ======================================= 
-|    Session Check on 192.168.13.201    |
+|    Session Check on 10.0.5.1    |
  ======================================= 
-[+] Server 192.168.13.201 allows sessions using username '', password ''
+[+] Server 10.0.5.1 allows sessions using username '', password ''
 
  ============================================= 
-|    Getting domain SID for 192.168.13.201    |
+|    Getting domain SID for 10.0.5.1    |
  ============================================= 
-Domain Name: THINC
+Domain Name: JIPPY
 Domain Sid: S-1-5-21-4254429285-501146052-1604752251
 [+] Host is part of a domain (not a workgroup)
 
  ======================================== 
-|    OS information on 192.168.13.201    |
+|    OS information on 10.0.5.1    |
  ======================================== 
-[+] Got OS info for 192.168.13.201 from smbclient: Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
-[+] Got OS info for 192.168.13.201 from srvinfo:
-	192.168.13.201 Wk Sv NT PtB         
+[+] Got OS info for 10.0.5.1 from smbclient: Domain=[JIPPY] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+[+] Got OS info for 10.0.5.1 from srvinfo:
+	10.0.5.1 Wk Sv NT PtB         
 	platform_id     :	500
 	os version      :	5.1
 	server type     :	0x11003
 
  =============================== 
-|    Users on 192.168.13.201    |
+|    Users on 10.0.5.1    |
  =============================== 
 [E] Couldn't find users using querydispinfo: NT_STATUS_ACCESS_DENIED
 
 [E] Couldn't find users using enumdomusers: NT_STATUS_ACCESS_DENIED
 
  =========================================== 
-|    Share Enumeration on 192.168.13.201    |
+|    Share Enumeration on 10.0.5.1    |
  =========================================== 
-Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
-Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+Domain=[JIPPY] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
+Domain=[JIPPY] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
 
 	Sharename       Type      Comment
 	---------       ----      -------
@@ -75,13 +75,13 @@ Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
 	Workgroup            Master
 	---------            -------
 
-[+] Attempting to map shares on 192.168.13.201
-//192.168.13.201/IPC$	Mapping: OK	Listing: DENIED
-//192.168.13.201/ADMIN$	Mapping: DENIED, Listing: N/A
-//192.168.13.201/C$	Mapping: DENIED, Listing: N/A
+[+] Attempting to map shares on 10.0.5.1
+//10.0.5.1/IPC$	Mapping: OK	Listing: DENIED
+//10.0.5.1/ADMIN$	Mapping: DENIED, Listing: N/A
+//10.0.5.1/C$	Mapping: DENIED, Listing: N/A
 
  ====================================================== 
-|    Password Policy Information for 192.168.13.201    |
+|    Password Policy Information for 10.0.5.1    |
  ====================================================== 
 [E] Can't connect to host with supplied credentials.
 
@@ -89,7 +89,7 @@ Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
 
 
  ================================ 
-|    Groups on 192.168.13.201    |
+|    Groups on 10.0.5.1    |
  ================================ 
 
 [+] Getting builtin groups:
@@ -105,7 +105,7 @@ Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
 [+] Getting domain group memberships:
 
  ========================================================================= 
-|    Users on 192.168.13.201 via RID cycling (RIDS: 500-550,1000-1050)    |
+|    Users on 10.0.5.1 via RID cycling (RIDS: 500-550,1000-1050)    |
  ========================================================================= 
 [E] Couldn't get SID: NT_STATUS_ACCESS_DENIED.  RID cycling not possible.
 [I] Found new SID: S-1-5-32
@@ -114,7 +114,7 @@ Domain=[THINC] OS=[Windows 5.1] Server=[Windows 2000 LAN Manager]
 [+] Enumerating users using SID S-1-5-21-1085031214-1677128483-839522115 and logon username '', password ''
 
  =============================================== 
-|    Getting printer info for 192.168.13.201    |
+|    Getting printer info for 10.0.5.1    |
  =============================================== 
 Could not initialise spoolss. Error was NT_STATUS_OBJECT_NAME_NOT_FOUND
 
