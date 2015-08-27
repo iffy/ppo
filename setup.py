@@ -8,7 +8,7 @@ setup(
     description='Parses Pentesting tools output',
     author='Matt Haggard',
     author_email='haggardii@gmail.com',
-    url='',
+    url='https://github.com/iffy/ppo',
     packages=[
         'ppo', 'ppo.test',
     ],
