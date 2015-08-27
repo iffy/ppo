@@ -17,10 +17,12 @@ class NmapXMLParser(plugins.ParserPlugin):
         xml = etree.parse(instream)
         root = xml.getroot()
 
-        nmaprun = {}
+        results = {}
+
+        nmaprun = results['nmaprun'] = {}
         nmaprun.update(root.attrib)
 
-        hosts = []
+        hosts = results['hosts'] = []
         
         for child in root:
             if child.tag == 'host':
@@ -31,12 +33,7 @@ class NmapXMLParser(plugins.ParserPlugin):
                     runstats[stat.tag] = dict(stat.attrib)
             else:
                 nmaprun[child.tag] = self._parseNode(child)
-        nmaprun['hosts'] = hosts
-        return {
-            'nmaprun': nmaprun,
-        }
-        return self._parseNode(root)
-
+        return results
 
     def _parseHost(self, host):
         ret = dict(host.attrib)
@@ -59,7 +56,7 @@ class NmapXMLParser(plugins.ParserPlugin):
 
     def _parsePort(self, port):
         ret = dict(port.attrib)
-        ret['portid'] = int(ret['portid'])
+        ret['port'] = int(ret.pop('portid'))
         for child in port:
             ret[child.tag] = self._parseNode(child)
         return ret

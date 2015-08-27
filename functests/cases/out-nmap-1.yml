@@ -14,45 +14,6 @@ nmaprun:
     level: "0"
   debugging:
     level: "0"
-  hosts:
-    - starttime: '1440623308'
-      endtime: '1440623310'
-      status:
-        state: up
-        reason: arp-response
-        reason_ttl: "0"
-      addresses:
-        - addr: 192.168.13.203
-          addrtype: ipv4
-        - addr: 00:50:56:AF:10:5C
-          addrtype: mac
-          vendor: VMware
-      hostnames: []
-      ports:
-        - protocol: tcp
-          portid: 80
-          state:
-            state: open
-            reason: syn-ack
-            reason_ttl: "128"
-          service:
-            name: http
-            method: table
-            conf: "3"
-        - protocol: tcp
-          portid: 443
-          state:
-            state: filtered
-            reason: no-response
-            reason_ttl: "0"
-          service:
-            name: https
-            method: table
-            conf: '3'
-      times:
-        srtt: "90011"
-        rttvar: "67771"
-        to: "361095"
   runstats:
     finished:
       time: '1440623310'
@@ -64,3 +25,42 @@ nmaprun:
       up: "1"
       down: "0"
       total: "1"
+hosts:
+  - starttime: '1440623308'
+    endtime: '1440623310'
+    status:
+      state: up
+      reason: arp-response
+      reason_ttl: "0"
+    addresses:
+      - addr: 192.168.13.203
+        addrtype: ipv4
+      - addr: 00:50:56:AF:10:5C
+        addrtype: mac
+        vendor: VMware
+    hostnames: []
+    ports:
+      - protocol: tcp
+        port: 80
+        state:
+          state: open
+          reason: syn-ack
+          reason_ttl: "128"
+        service:
+          name: http
+          method: table
+          conf: "3"
+      - protocol: tcp
+        port: 443
+        state:
+          state: filtered
+          reason: no-response
+          reason_ttl: "0"
+        service:
+          name: https
+          method: table
+          conf: '3'
+    times:
+      srtt: "90011"
+      rttvar: "67771"
+      to: "361095"
