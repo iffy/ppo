@@ -5,6 +5,7 @@ import os
 import inspect
 import sys
 import importlib
+import traceback
 from StringIO import StringIO
 
 from ppo import plugins
@@ -43,7 +44,12 @@ class Parser(object):
         chosen = []
         for plugin in self._plugins:
             seekable.seek(0)
-            prob = plugin.readProbability(seekable)
+            try:
+                prob = plugin.readProbability(seekable)
+            except Exception as e:
+                log('Misbehaving parser: %r' % (plugin.name,))
+                traceback.print_exc()
+                prob = 0
             if prob > 0:
                 chosen.append((prob, plugin))
 
@@ -53,20 +59,20 @@ class Parser(object):
 
         # highest numerical probability first
         chosen = [x[1] for x in sorted(chosen, key=lambda x:-x[0])]
-        first_exception = None
+        errors = []
         parsed = None
         for plugin in chosen:
             seekable.seek(0)
             try:
                 parsed = plugin.parse(seekable)
+                break
             except Exception as e:
-                log('Error parsing with %r plugin:\n%s' % (
-                    plugin.name, e))
-                if not first_exception:
-                    first_exception = e
+                errors.append((plugin.name, e))
 
         if parsed is None:
-            raise Exception('Failed to parse using the following plugins: %s' % (
+            for plugin_name, error in errors:
+                traceback.print_exc(error)
+            raise Exception('Failed to parse using these plugins: %s' % (
                 ', '.join([x.name for x in chosen])))
         return parsed
 

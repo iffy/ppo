@@ -59,6 +59,8 @@ def makeTestFunc(name, infile, outfile):
         parsed = parse(fh_i)
         
         expected_output = None
+        if outfile is None:
+            self.fail('No expected output file present')
         fh_o = open(outfile, 'rb')
         if outfile.endswith('yml'):
             expected_output = yaml.load(fh_o)
