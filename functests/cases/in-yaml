@@ -1,0 +1,6 @@
+foo:
+  - bar
+  - baz
+hey:
+  something: cool
+  numbers: 7
