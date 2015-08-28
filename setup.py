@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# Copyright (c) The ppo team
+# See LICENSE for details.
+
 
 from distutils.core import setup
 
