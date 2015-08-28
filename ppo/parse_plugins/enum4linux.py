@@ -1,3 +1,6 @@
+# Copyright (c) The ppo team
+# See LICENSE for details.
+
 from ppo import plugins
 
 from collections import defaultdict

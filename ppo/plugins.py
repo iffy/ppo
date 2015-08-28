@@ -1,3 +1,5 @@
+# Copyright (c) The ppo team
+# See LICENSE for details.
 
 class ParserPlugin(object):
     """

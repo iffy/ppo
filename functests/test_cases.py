@@ -1,3 +1,6 @@
+# Copyright (c) The ppo team
+# See LICENSE for details.
+
 """
 Dynamically generate the test cases based on input and
 output files in `cases/`

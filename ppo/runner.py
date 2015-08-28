@@ -1,3 +1,6 @@
+# Copyright (c) The ppo team
+# See LICENSE for details.
+
 import argparse
 import sys
 import yaml
@@ -20,11 +23,10 @@ ap.add_argument('-f', '--format',
          'environment variable.'
          '  (default: %(default)s)')
 
-ap.add_argument('-p', '--passthru-unknown', action='store_true',
-    help="If given, then input that isn't able to be parsed will be "
-         "returned unchanged.  Use this if you don't want "
-         "NoWillingParsers exceptions for a format you know can't "
-         "be processed.")
+ap.add_argument('-s', '--strict', action='store_true',
+    help="Without this option, unparseable input is returned unchanged. "
+         "If --strict is supplied, then an error will be raised if there's "
+         "unparseable input.")
 
 ap.add_argument('--ls', action='store_true',
     help='Print out list of parsing plugins and exit')
@@ -40,14 +42,15 @@ def run():
     try:
         parsed = parse(infile)
     except NoWillingParsers:
-        if args.passthru_unknown:
+        if args.strict:
+            raise
+        else:
             infile.seek(0)
             sys.stdout.write(infile.read())
             sys.exit(0)
-        else:
-            raise
 
     if args.format == 'yaml':
         print yaml.dump(parsed, default_flow_style=False)
     elif args.format == 'json':
         print json.dumps(parsed)
+

@@ -5,6 +5,16 @@
 
     whatever output the program gives -> ppo -> YAML/JSON
 
+# Installation #
+
+Install the latest stable release from PyPi:
+
+    pip install ppo
+
+Or install the most recent stable, unreleased version from GitHub:
+
+    pip install git+https://github.com/iffy/ppo.git
+
 # Example #
 
 For instance, here's parsing `nmap` xml output:

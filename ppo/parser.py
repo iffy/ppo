@@ -1,3 +1,6 @@
+# Copyright (c) The ppo team
+# See LICENSE for details.
+
 import os
 import inspect
 import sys
