@@ -64,7 +64,7 @@ class EqualDelimitedPlugin(plugins.ParserPlugin):
         guts = self.r_sub.sub('\n', guts)
         try:
             result = yaml.safe_load(StringIO(guts))
-        except Exception as e:
+        except Exception:
             traceback.print_exc()
             raise
         return result
