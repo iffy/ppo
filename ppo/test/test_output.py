@@ -44,7 +44,7 @@ class giganticGrepTest(TestCase):
         """
         self.assertValue(
             {'foo': 'foo', 'bar': 43, 'zippy': 'zoo'},
-            'bar: 43 foo: foo zippy: zoo\n'
+            'bar:\t43\tfoo:\tfoo\tzippy:\tzoo\n'
         )
 
     def test_nested_dict(self):
@@ -61,8 +61,7 @@ class giganticGrepTest(TestCase):
                 'zoo': 'hoo',
             },
             [
-                'foo: foo zoo: hoo',
-                'foo: foo zoo: hoo bar: a: apple b: banana',
+                'bar:\ta:\tapple\tb:\tbanana\tfoo:\tfoo\tzoo:\thoo',
             ])
 
     def test_multi_nested_dict(self):
@@ -85,12 +84,10 @@ class giganticGrepTest(TestCase):
                 ]
             },
             [
-                'foo: foo',
-                'foo: foo bar: a: apple b: banana',
-                'foo: foo car: a: apple b: banana',
-                'foo: foo dog: 1',
-                'foo: foo dog: 2',
-                'foo: foo dog: foo',
+                'bar:\ta:\tapple\tb:\tbanana\tcar:\ta:\tapple\tb:\tbanana\tfoo:\tfoo',
+                'bar:\ta:\tapple\tb:\tbanana\tcar:\ta:\tapple\tb:\tbanana\tfoo:\tfoo\tdog:\t1',
+                'bar:\ta:\tapple\tb:\tbanana\tcar:\ta:\tapple\tb:\tbanana\tfoo:\tfoo\tdog:\t2',
+                'bar:\ta:\tapple\tb:\tbanana\tcar:\ta:\tapple\tb:\tbanana\tfoo:\tfoo\tdog:\tfoo',
             ]
         )
 
@@ -119,32 +116,35 @@ class giganticGrepTest(TestCase):
                 ]
             },
             [
-                "host: 10.0.0.1",
-                "host: 10.0.0.1 roo: A",
-                "host: 10.0.0.1 roo: B",
-                "host: 10.0.0.1 roo: C",
-                "host: 10.0.0.1 zoo: 1",
-                "host: 10.0.0.1 zoo: 2",
+                "host:\t10.0.0.1",
+                "host:\t10.0.0.1\troo:\tA\tzoo:\t1",
+                "host:\t10.0.0.1\troo:\tA\tzoo:\t2",
+                "host:\t10.0.0.1\troo:\tB\tzoo:\t1",
+                "host:\t10.0.0.1\troo:\tB\tzoo:\t2",
+                "host:\t10.0.0.1\troo:\tC\tzoo:\t1",
+                "host:\t10.0.0.1\troo:\tC\tzoo:\t2",
             ])
 
     def test_newlines(self):
         """
-        Newlines should be stripped out.
+        Newlines should be treated as lists
         """
-        self.assertValue({
+        self.assertLines({
             "foo": "something\nwith\nnewlines",
-        },
-        "foo: something_with_newlines\n")
-
+        }, [
+            "foo:\tsomething",
+            "foo:\twith",
+            "foo:\tnewlines",
+        ])
 
     def test_spaces(self):
         """
-        Spaces should be replaced with underscores
+        Spaces should be preserved
         """
-        self.assertValue({
+        self.assertLines({
             'foo bar': 'something here',
         },
-        "foo_bar: something_here\n")
+            ["foo bar:\tsomething here"])
 
 
     def test_unicode(self):
@@ -155,7 +155,7 @@ class giganticGrepTest(TestCase):
             'snowman': u'\N{SNOWMAN}',
             'something': 'not a snowman',
         },
-            u"snowman: \N{SNOWMAN} something: not_a_snowman\n".encode('utf-8'))
+            u"snowman:\t\N{SNOWMAN}\tsomething:\tnot a snowman\n".encode('utf-8'))
 
     def test_empty_list(self):
         """
@@ -166,7 +166,7 @@ class giganticGrepTest(TestCase):
             'foo': 'something',
             'another': [1,2],
         }, [
-            'foo: something hosts: []',
-            'foo: something hosts: [] another: 1',
-            'foo: something hosts: [] another: 2',
+            'foo:\tsomething\thosts:\t',
+            'foo:\tsomething\thosts:\t\tanother:\t1',
+            'foo:\tsomething\thosts:\t\tanother:\t2',
         ])

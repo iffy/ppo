@@ -28,6 +28,7 @@ nmaprun:
 hosts:
   - starttime: 1440623308
     endtime: 1440623310
+    ident: 192.168.13.201
     status:
       state: up
       reason: arp-response

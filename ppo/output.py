@@ -1,4 +1,5 @@
 
+import itertools
 import re
 
 r_ws = re.compile(r'\s+')
@@ -8,30 +9,35 @@ def _flattenThing(thing):
     if isinstance(thing, dict):
         keys = sorted(thing)
         simples = []
-        multis = []
+        multi_keys = []
+        multi_vals = []
         for key in keys:
-            value = thing[key]
-            flattened = _flattenThing(value)
-            if value and isinstance(value, (dict, list, tuple)):
-                # multi
-                multis.append((key, flattened))
-            else:
+            value = list(_flattenThing(thing[key]))
+            if not value or len(value) == 1:
                 # simple
-                simples.append((key, flattened))
+                simples.append((key, value or ['']))
+            else:
+                # multi
+                multi_keys.append(key)
+                multi_vals.append(value)
 
         # do the single simple line first
         simple_line = []
         for k,v in simples:
-            value = (list(v) or ['[]'])[0]
-            simple_line.append('%s: %s' % (r_ws.sub('_', k), value))
-        simple_line = ' '.join(simple_line)
+            value = (list(v) or [''])[0]
+            simple_line.append('%s:\t%s' % (k, value))
+        simple_line = '\t'.join(simple_line)
         yield simple_line
 
-        # do the combinations
-        for k,v in multis:
-            for item in v:
-                part = '%s: %s' % (k, item)
-                yield ' '.join([simple_line, part])
+        p = itertools.product(*multi_vals)
+        if multi_vals:
+            for value_set in (zip(multi_keys,value_set) for value_set in p):
+                parts = []
+                for k,v in value_set:
+                    parts.append('%s:\t%s' % (k,v))
+                if simple_line:
+                    parts = [simple_line] + parts
+                yield '\t'.join(parts)
 
     elif isinstance(thing, (list, tuple)):
         for item in thing:
@@ -42,7 +48,8 @@ def _flattenThing(thing):
             thing = thing.encode('utf-8')
         elif not isinstance(thing, str):
             thing = str(thing)
-        yield r_ws.sub('_', thing)
+        for line in thing.split('\n'):
+            yield line
 
 def giganticGrep(data, outstream):
     """
