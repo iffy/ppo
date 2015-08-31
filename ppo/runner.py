@@ -50,7 +50,7 @@ def run():
             sys.exit(0)
 
     if args.format == 'yaml':
-        print yaml.dump(parsed, default_flow_style=False)
+        print yaml.safe_dump(parsed, default_flow_style=False)
     elif args.format == 'json':
         print json.dumps(parsed)
     elif args.format == 'grep':
