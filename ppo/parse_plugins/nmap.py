@@ -90,7 +90,12 @@ class NmapXMLParser(plugins.ParserPlugin):
             if tag.tag == 'address':
                 ret['addresses'].append(self._parseNode(tag))
             elif tag.tag == 'ports':
-                ret['ports'] = [self._parsePort(x) for x in tag]
+                ports = ret.setdefault('ports', [])
+                for child in tag:
+                    if child.tag == 'port':
+                        ports.append(self._parsePort(child))
+                    elif child.tag == 'extraports':
+                        ret['extraports'] = self._parseExtraPorts(child)
             elif tag.tag == 'hostnames':
                 ret['hostnames'] = []
             elif tag.tag == 'hostscript':
@@ -109,6 +114,16 @@ class NmapXMLParser(plugins.ParserPlugin):
                     }
                 }.get(tag.tag, {})
                 ret[tag.tag] = self._parseNode(tag, mapping)
+        return ret
+
+    def _parseExtraPorts(self, elem):
+        ret = mapType(elem.attrib, {
+            'count': int,
+        })
+        ret['reasons'] = {}
+        reasons = elem.findall('.//extrareasons')
+        for reason in reasons:
+            ret['reasons'][reason.attrib['reason']] = int(reason.attrib['count'])
         return ret
 
     def _parsePort(self, port):

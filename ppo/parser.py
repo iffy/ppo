@@ -46,7 +46,7 @@ class Parser(object):
             seekable.seek(0)
             try:
                 prob = plugin.readProbability(seekable)
-            except Exception as e:
+            except Exception:
                 log('Misbehaving parser: %r' % (plugin.name,))
                 traceback.print_exc()
                 prob = 0
@@ -66,12 +66,13 @@ class Parser(object):
             try:
                 parsed = plugin.parse(seekable)
                 break
-            except Exception as e:
-                errors.append((plugin.name, e))
+            except Exception:
+                err_string = traceback.format_exc()
+                errors.append((plugin.name, err_string))
 
         if parsed is None:
-            for plugin_name, error in errors:
-                traceback.print_exc(error)
+            for plugin_name, err_string in errors:
+                log('# Error in %s plugin:\n%s' % (plugin_name, err_string))
             raise Exception('Failed to parse using these plugins: %s' % (
                 ', '.join([x.name for x in chosen])))
         return parsed
