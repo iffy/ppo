@@ -17,7 +17,7 @@ ap = argparse.ArgumentParser(
 
 ap.add_argument('-f', '--format',
     default=os.environ.get('PPO_OUTPUT_FORMAT', 'json'),
-    choices=['json', 'yaml'],
+    choices=['json', 'yaml', 'grep'],
     help='Output format.'
          '  You can also set this with the PPO_OUTPUT_FORMAT '
          'environment variable.'
@@ -53,4 +53,7 @@ def run():
         print yaml.dump(parsed, default_flow_style=False)
     elif args.format == 'json':
         print json.dumps(parsed)
+    elif args.format == 'grep':
+        from ppo.output import giganticGrep
+        giganticGrep(parsed, sys.stdout)
 
