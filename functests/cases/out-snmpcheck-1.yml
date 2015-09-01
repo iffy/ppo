@@ -1,6 +1,6 @@
 target: 10.0.0.5
 meta:
-  starttime: 2015-08-26 11:49:08
+  starttime: "2015-08-26 11:49:08"
   runtime: 73.74 seconds
 system:
   hostname: SRV2
@@ -60,13 +60,13 @@ storage:
     device_type: Removable Disk
     filesystem_type: Unknown
   - name: 'C:\'
-    Label: Serial Number e448e451
+    label: Serial Number e448e451
     device_id: 2
     device_type: Fixed Disk
     filesystem_type: NTFS
     device_units: 2048
     memory_size: 3.3G
-    memory_user: 2.0G
+    memory_used: 2.0G
     memory_free: 1.4G
   - name: 'D:\'
     device_id: 3
@@ -78,7 +78,7 @@ storage:
     filesystem_type: Unknown
     device_units: 65536
     memory_size: 864M
-    memory_user: 124M
+    memory_used: 124M
     memory_free: 741M
 user_accounts:
   - Administrator
@@ -94,141 +94,139 @@ user_accounts:
   - sqlusr
   - todd
 processes:
-  total: 20
-  listing:
-    - pid: 1
-      name: System Idle Process
-      type: os
-      status: running 
-    - pid: 1208
-      name: sqlagent.exe
-      type: application
-      status: running 
-    - pid: 1340
-      name: dllhost.exe
-      type: application
-      status: running 
-    - pid: 144
-      name: dllhost.exe
-      type: application
-      status: running 
-    - pid: 1548
-      name: dfssvc.exe
-      type: application
-      status: running 
-    - pid: 1620
-      name: svchost.exe
-      type: application
-      status: running 
-    - pid: 172
-      name: smss.exe
-      type: application
-      status: running 
-    - pid: 1740
-      name: sqlservr.exe
-      type: application
-      status: running 
-    - pid: 200
-      name: csrss.exe
-      type: application
-      status: running 
-    - pid: 220
-      name: WINLOGON.EXE
-      type: application
-      status: running 
-    - pid: 248
-      name: services.exe
-      type: application
-      status: running 
-    - pid: 260
-      name: LSASS.EXE
-      type: application
-      status: running 
-    - pid: 456
-      name: svchost.exe
-      type: application
-      status: running 
-    - pid: 488
-      name: SPOOLSV.EXE
-      type: application
-      status: running 
-    - pid: 520
-      name: msdtc.exe
-      type: application
-      status: running 
-    - pid: 624
-      name: svchost.exe
-      type: application
-      status: running 
-    - pid: 652
-      name: LLSSRV.EXE
-      type: application
-      status: running 
-    - pid: 676
-      name: CMD.EXE
-      type: application
-      status: running 
-    - pid: 740
-      name: regsvc.exe
-      type: application
-      status: running 
-    - pid: 752
-      name: mstask.exe
-      type: application
-      status: running 
-    - pid: 776
-      name: snmp.exe
-      type: application
-      status: running 
-    - pid: 8
-      name: System
-      type: os
-      status: running 
-    - pid: 808
-      name: vmtoolsd.exe
-      type: application
-      status: running 
-    - pid: 892
-      name: winmgmt.exe
-      type: application
-      status: running 
-    - pid: 904
-      name: winvnc4.exe
-      type: application
-      status: runnable 
-    - pid: 916
-      name: svchost.exe
-      type: unknown
-      status: not runnable 
-    - pid: 936
-      name: inetinfo.exe
-      type: device driver
-      status: invalid
+  - pid: 1
+    name: System Idle Process
+    type: operating system
+    status: running 
+  - pid: 1208
+    name: sqlagent.exe
+    type: application
+    status: running 
+  - pid: 1340
+    name: dllhost.exe
+    type: application
+    status: running 
+  - pid: 144
+    name: dllhost.exe
+    type: application
+    status: running 
+  - pid: 1548
+    name: dfssvc.exe
+    type: application
+    status: running 
+  - pid: 1620
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 172
+    name: smss.exe
+    type: application
+    status: running 
+  - pid: 1740
+    name: sqlservr.exe
+    type: application
+    status: running 
+  - pid: 200
+    name: csrss.exe
+    type: application
+    status: running 
+  - pid: 220
+    name: WINLOGON.EXE
+    type: application
+    status: running 
+  - pid: 248
+    name: services.exe
+    type: application
+    status: running 
+  - pid: 260
+    name: LSASS.EXE
+    type: application
+    status: running 
+  - pid: 456
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 488
+    name: SPOOLSV.EXE
+    type: application
+    status: running 
+  - pid: 520
+    name: msdtc.exe
+    type: application
+    status: running 
+  - pid: 624
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 652
+    name: LLSSRV.EXE
+    type: application
+    status: running 
+  - pid: 676
+    name: CMD.EXE
+    type: application
+    status: running 
+  - pid: 740
+    name: regsvc.exe
+    type: application
+    status: running 
+  - pid: 752
+    name: mstask.exe
+    type: application
+    status: running 
+  - pid: 776
+    name: snmp.exe
+    type: application
+    status: running 
+  - pid: 8
+    name: System
+    type: operating system
+    status: running 
+  - pid: 808
+    name: vmtoolsd.exe
+    type: application
+    status: running 
+  - pid: 892
+    name: winmgmt.exe
+    type: application
+    status: running 
+  - pid: 904
+    name: winvnc4.exe
+    type: application
+    status: runnable 
+  - pid: 916
+    name: svchost.exe
+    type: unknown
+    status: not runnable 
+  - pid: 936
+    name: inetinfo.exe
+    type: device driver
+    status: invalid
 network_info:
-  IP forwarding enabled: no
-  Default TTL: 128
-  TCP segments received: 3417825
-  TCP segments sent: 2776313
-  TCP segments retrans.: 476
-  Input datagrams: 3481507
-  Delivered datagrams: 3481445
-  Output datagrams: 2803029
+  ip_forwarding_enabled: 'no'
+  default_ttl: 128
+  tcp_segments_received: 3417825
+  tcp_segments_sent: 2776313
+  tcp_segments_retrans.: 476
+  input_datagrams: 3481507
+  delivered_datagrams: 3481445
+  output_datagrams: 2803029
 network_interfaces:
-  - name: MS TCP Loopback interface
+  - name: "MS TCP Loopback interface\0"
     status: up
-    Interface Speed: 10 Mbps
-    IP Address: 127.0.0.1
-    Netmask: 255.0.0.0
-    MTU: 1500
+    interface_speed: 10 Mbps
+    ip_address: 127.0.0.1
+    netmask: 255.0.0.0
+    mtu: 1500
     bytes_in: 999190
     bytes_out: 999190
-  - name: "VMware Accelerated AMD PCNet Adapter"
+  - name: "VMware Accelerated AMD PCNet Adapter\0"
     status: up
-    Hardware Address: "00:50:56:af:63:60"
-    Interface Speed: 1000 Mbps
-    IP Address: 10.0.0.5
-    Netmask: 255.255.254.0
-    MTU: 1500
+    hardware_address: "00:50:56:af:63:60"
+    interface_speed: 1000 Mbps
+    ip_address: 10.0.0.5
+    netmask: 255.255.254.0
+    mtu: 1500
     bytes_in: 296594873
     bytes_out: 1250570309
 routing:
