@@ -65,7 +65,8 @@ class Parser(object):
             seekable.seek(0)
             try:
                 parsed = plugin.parse(seekable)
-                break
+                if parsed is not None:
+                    break
             except Exception:
                 err_string = traceback.format_exc()
                 errors.append((plugin.name, err_string))

@@ -17,12 +17,14 @@ class YAMLParser(plugins.ParserPlugin):
     name = 'yaml'
 
     def readProbability(self, instream):
-        first_part = instream.read(200)
+        lines = []
+        for i in xrange(5):
+            lines.append(instream.readline())
         try:
-            yaml.safe_load(StringIO(first_part))
+            yaml.safe_load(StringIO('\n'.join(lines)))
             return 10
         except yaml.scanner.ScannerError:
-            return 1
+            return 0
 
     def parse(self, instream):
         return yaml.safe_load(instream)
