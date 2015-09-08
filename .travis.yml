@@ -22,7 +22,7 @@ after_success:
   - codecov
 
 notifications:
-  email: false
+  email: true
 
 branches:
   only:

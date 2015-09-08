@@ -65,6 +65,10 @@ class Parser(object):
             seekable.seek(0)
             try:
                 parsed = plugin.parse(seekable)
+                # add ppo metadata
+                parsed['_ppo'] = {
+                    'parser': plugin.name,
+                }
                 break
             except Exception:
                 err_string = traceback.format_exc()

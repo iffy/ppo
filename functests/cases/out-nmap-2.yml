@@ -1,3 +1,5 @@
+_ppo:
+  parser: nmap-xml
 nmaprun:
   scanner: "nmap"
   args: "nmap -oX /root/kalishare/nmap2.xml 192.168.13.205"

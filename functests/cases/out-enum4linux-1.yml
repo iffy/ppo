@@ -1,3 +1,5 @@
+_ppo:
+  parser: enum4linux
 ipv4: 10.0.5.1
 username: ''
 password: ''

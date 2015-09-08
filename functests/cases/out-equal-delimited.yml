@@ -1,3 +1,5 @@
+_ppo:
+  parser: equaldelim
 foo: bar
 boo: joo
 something: important

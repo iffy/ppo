@@ -34,7 +34,7 @@ class EqualDelimitedPlugin(plugins.ParserPlugin):
     I parse lists of variables delimited by equal signs.
     """
 
-    name = 'equal-delimited'
+    name = 'equaldelim'
 
     r_candidate = re.compile(r'''
         [^=]+?=[.\s]*

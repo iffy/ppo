@@ -1,3 +1,5 @@
+_ppo:
+  parser: iptables
 INPUT:
   ACCEPT:
     packets: "47"
