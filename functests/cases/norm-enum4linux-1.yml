@@ -1,0 +1,34 @@
+_ppo:
+  parser: enum4linux
+  normlized: true
+info:
+  - type: host
+    ipv4: 10.0.5.1
+  - type: username
+    username: administrator
+  - type: username
+    username: guest
+  - type: username
+    username: krbtgt
+  - type: username
+    username: domain admins
+  - type: username
+    username: root
+  - type: username
+    username: bin
+  - type: username
+    username: none
+  - type: os_information
+    host: 10.0.5.1
+    flavor: windows
+    version: Windows 5.1
+  - type: org_identity
+    name: JAMAL
+  - type: org_identity
+    name: JIPPY
+  - type: org_identity
+    name: IPC$
+  - type: org_identity
+    name: ADMIN$
+  - type: org_identity
+    name: C$
