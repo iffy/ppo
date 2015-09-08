@@ -1,3 +1,5 @@
+_ppo:
+  parser: yaml
 foo:
   - bar
   - baz
