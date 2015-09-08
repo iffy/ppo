@@ -9,7 +9,7 @@ import os
 
 from StringIO import StringIO
 
-from ppo.parser import parse, parser, NoWillingParsers
+from ppo.parser import parse, parser, NoWillingParsers, normalize
 
 ap = argparse.ArgumentParser(
     description="Reads from stdin and produces YAML output "
@@ -31,6 +31,9 @@ ap.add_argument('-s', '--strict', action='store_true',
 ap.add_argument('--ls', action='store_true',
     help='Print out list of parsing plugins and exit')
 
+ap.add_argument('-N', '--normalize', action='store_true',
+    help="Normalize output into information about hosts and organizations")
+
 def run():
     args = ap.parse_args()
 
@@ -48,6 +51,9 @@ def run():
             infile.seek(0)
             sys.stdout.write(infile.read())
             sys.exit(0)
+
+    if args.normalize:
+        parsed = normalize(parsed)
 
     if args.format == 'yaml':
         print yaml.safe_dump(parsed, default_flow_style=False)

@@ -82,6 +82,12 @@ class Parser(object):
         return parsed
 
 
+    def normalize(self, infile):
+        """
+        Normalize already-parsed data.
+        """
+
+
 def getPlugins(package):
     """
     Given a directory, get all the plugins out of the python modules inside it.
@@ -115,3 +121,4 @@ def createParser(package):
 
 parser = createParser('ppo.parse_plugins')
 parse = parser.parse
+normalize = parser.normalize

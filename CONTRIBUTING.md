@@ -22,9 +22,9 @@ Create a pull request on GitHub.
 
 You can also add a YAML file indicating how the program's output should be parsed in this format: `functests/cases/out-<programname>-<desc>.yml`
 
-# If you have even more time #
+And you can also add a YAML file indicating how the output should be normalized: `functests/cases/norm-<programname>-<desc>.yml`
 
-You can add a plugin to make `ppo` behave how you'd like.  Look at `ppo/parse_plugins/nmap.py` for an example.
+And you can add a plugin to make `ppo` behave how you'd like.  Look at `ppo/parse_plugins/nmap.py` for an example.
 
 Make sure the tests pass:
 
