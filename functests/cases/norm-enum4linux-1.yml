@@ -1,34 +1,53 @@
 _ppo:
   parser: enum4linux
   normlized: true
-info:
-  - type: host
+objects:
+  - _obj: host
     ipv4: 10.0.5.1
-  - type: username
-    username: administrator
-  - type: username
-    username: guest
-  - type: username
-    username: krbtgt
-  - type: username
-    username: domain admins
-  - type: username
-    username: root
-  - type: username
-    username: bin
-  - type: username
-    username: none
-  - type: os_information
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: administrator
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: guest
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: krbtgt
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: domain admins
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: root
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: bin
+  - _obj: service/user
+    host: 10.0.5.1
+    service: samba
+    name: none
+  - _obj: host/os
     host: 10.0.5.1
     flavor: windows
     version: Windows 5.1
-  - type: org_identity
-    name: JAMAL
-  - type: org_identity
-    name: JIPPY
-  - type: org_identity
-    name: IPC$
-  - type: org_identity
-    name: ADMIN$
-  - type: org_identity
-    name: C$
+  - _obj: org/jargon
+    host: 10.0.5.1
+    values:
+      - administrator
+      - guest
+      - krbtgt
+      - domain admins
+      - root
+      - bin
+      - none
+      - JAMAL
+      - JIPPY
+      - IPC$
+      - ADMIN$
+      - C$
