@@ -8,14 +8,16 @@ import importlib
 import traceback
 from StringIO import StringIO
 
+import structlog
+
+logger = structlog.get_logger()
+
+
 from ppo import plugins
 
 class ParseError(Exception): pass
 class NoWillingParsers(Exception): pass
 
-
-def log(*messages):
-    sys.stderr.write(' '.join(map(str, messages)) + '\n')
 
 
 class Parser(object):
@@ -37,18 +39,21 @@ class Parser(object):
         # XXX I don't love reading everything into memory.  It would be
         # better to wrap this file in an always seekable stream that
         # would let you seek to the beginning of stdin.
+        log = logger.bind(action='parse')
 
         guts = infile.read()
         seekable = StringIO(guts)
 
         chosen = []
+        log.msg('Finding candidate plugins...')
         for plugin in self._plugins:
+            l = log.bind(plugin=plugin.name)
             seekable.seek(0)
             try:
                 prob = plugin.readProbability(seekable)
+                l.msg(reported_prob=prob)
             except Exception:
-                log('Misbehaving parser: %r' % (plugin.name,))
-                traceback.print_exc()
+                l.msg(exc_info=True)
                 prob = 0
             if prob > 0:
                 chosen.append((prob, plugin))
@@ -61,23 +66,30 @@ class Parser(object):
         chosen = [x[1] for x in sorted(chosen, key=lambda x:-x[0])]
         errors = []
         parsed = None
+        log.msg('Attempting to parse...')
         for plugin in chosen:
+            l = log.bind(plugin=plugin.name)
             seekable.seek(0)
             try:
                 parsed = plugin.parse(seekable)
                 if parsed is not None:
+                    l.msg('success')
                     # add ppo metadata
                     parsed['_ppo'] = {
                         'parser': plugin.name,
                     }
                     break
+                else:
+                    l.msg('no output')
             except Exception:
                 err_string = traceback.format_exc()
                 errors.append((plugin.name, err_string))
+                l.msg('failure', traceback=err_string)
 
         if parsed is None:
+            log.msg('no parsed data')
             for plugin_name, err_string in errors:
-                log('# Error in %s plugin:\n%s' % (plugin_name, err_string))
+                log.msg(plugin=plugin.name, traceback=err_string)
             raise Exception('Failed to parse using these plugins: %s' % (
                 ', '.join([x.name for x in chosen])))
         return parsed

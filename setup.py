@@ -20,6 +20,8 @@ setup(
         'PyYaml',
         'lxml',
         'importlib',
+        'structlog',
+        'ordereddict',
     ],
     scripts=[
         'scripts/ppo',
