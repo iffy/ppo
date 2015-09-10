@@ -33,12 +33,34 @@ class NmapXMLParser(plugins.ParserPlugin):
 
 
     def normalize(self, data):
-        objects = []
         for host in data['hosts']:
-            pass
-        return {
-            'objects': objects,
-        }
+            # host
+            obj = {
+                'object': 'host',
+                'ipv4': host['ipv4'],
+                'state': host['status']['state'],
+            }
+            for addr in host['addresses']:
+                if addr['addrtype'] == 'mac':
+                    obj['mac'] = addr['addr']
+            yield obj
+
+            for port in host['ports']:
+                # port
+                yield {
+                    'object': 'port',
+                    'host': host['ipv4'],
+                    'port': port['port'],
+                    'state': port['state']['state'],
+                }
+
+                # service
+                yield {
+                    'object': 'service',
+                    'host': host['ipv4'],
+                    'port': port['port'],
+                    'service': port['service']['name'],
+                }
 
 
     def parse(self, instream):

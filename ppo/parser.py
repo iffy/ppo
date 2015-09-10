@@ -90,9 +90,11 @@ class Parser(object):
         """
         plugin_name = data['_ppo']['parser']
         plugin = self._plugins[plugin_name]
-        normalized = plugin.normalize(data)
-        normalized['_ppo'] = data['_ppo'].copy()
+        normalized = {
+            '_ppo': data['_ppo'].copy(),
+        }
         normalized['_ppo']['normalized'] = True
+        normalized['objects'] = list(plugin.normalize(data))
         return normalized
 
 
