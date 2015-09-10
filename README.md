@@ -133,16 +133,15 @@ By default, `ppo` renders JSON, making it nice to use with [jq](https://stedolan
 
 You can produce greppable/cuttable output with `-f grep`:
 
-    $ cat functests/cases/in-nmap-1 | scripts/ppo -f grep | grep 'port: 443'
-    hosts: endtime: 1440623310 hostnames: [] starttime: 1440623308 ports: port: 443 protocol: tcp
-    hosts: endtime: 1440623310 hostnames: [] starttime: 1440623308 ports: port: 443 protocol: tcp service: conf: 3 method: table name: https
-    hosts: endtime: 1440623310 hostnames: [] starttime: 1440623308 ports: port: 443 protocol: tcp state: reason: no-response reason_ttl: 0 state: filtered
+    $ cat functests/cases/in-nmap-1 | ppo -f grep | grep 'port: 443'
+    hosts: endtime: 1440623310 hostnames: [] ipv4: 192.168.13.203 starttime: 1440623308 ports: port: 443 protocol: tcp
+    hosts: endtime: 1440623310 hostnames: [] ipv4: 192.168.13.203 starttime: 1440623308 ports: port: 443 protocol: tcp service: conf: 3 method: table name: https
+    hosts: endtime: 1440623310 hostnames: [] ipv4: 192.168.13.203 starttime: 1440623308 ports: port: 443 protocol: tcp state: reason: no-response reason_ttl: 0 state: filtered
 
 Or this:
 
-    $ cat functests/cases/in-nmap-1 | scripts/ppo -f grep | grep 'state: open'
-    hosts: endtime: 1440623310 hostnames: [] starttime: 1440623308 ports: port: 80 protocol: tcp state: reason: syn-ack reason_ttl: 128 state: open
-
+    $ cat functests/cases/in-nmap-1 | ppo -f grep | grep 'state: open'
+    hosts: endtime: 1440623310 hostnames: [] ipv4: 192.168.13.203 starttime: 1440623308 ports: port: 80 protocol: tcp state: reason: syn-ack reason_ttl: 128 state: open
 
 # Supported programs #
 
