@@ -7,6 +7,8 @@ import yaml
 import json
 import os
 
+import structlog
+
 from StringIO import StringIO
 
 from ppo.parser import parse, parser, NoWillingParsers
@@ -28,6 +30,9 @@ ap.add_argument('-s', '--strict', action='store_true',
          "If --strict is supplied, then an error will be raised if there's "
          "unparseable input.")
 
+ap.add_argument('-v', '--verbose', action='store_true',
+    help="Show debug/logging output")
+
 ap.add_argument('--ls', action='store_true',
     help='Print out list of parsing plugins and exit')
 
@@ -37,6 +42,11 @@ def run():
     if args.ls:
         print '\n'.join(parser.listPluginNames())
         sys.exit(0)
+
+    if args.verbose:
+        structlog.configure(logger_factory=structlog.PrintLoggerFactory(sys.stderr))
+    else:
+        structlog.configure(logger_factory=structlog.ReturnLoggerFactory())
 
     infile = StringIO(sys.stdin.read())
     try:

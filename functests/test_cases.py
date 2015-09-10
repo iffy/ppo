@@ -24,6 +24,9 @@ import difflib
 from collections import defaultdict
 from ppo.parser import parse
 
+import structlog
+structlog.configure_once(logger_factory=structlog.twisted.LoggerFactory())
+
 r_notalpha = re.compile(r'[^a-zA-Z0-9]', re.S | re.M)
 
 
@@ -55,6 +58,7 @@ def diffStrings(a, b, alabel=None, blabel=None):
 
 def makeTestFunc(name, infile, outfile):
     def func(self):
+        structlog.get_logger().msg(testcase=name)
         fh_i = open(infile, 'rb')
         parsed = parse(fh_i)
         
