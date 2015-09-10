@@ -31,6 +31,16 @@ class NmapXMLParser(plugins.ParserPlugin):
         if 'nmap' in first_part and 'xml' in first_part:
             return 50
 
+
+    def normalize(self, data):
+        objects = []
+        for host in data['hosts']:
+            pass
+        return {
+            'objects': objects,
+        }
+
+
     def parse(self, instream):
         xml = etree.parse(instream)
         root = xml.getroot()

@@ -22,15 +22,15 @@ class Parser(object):
     
 
     def __init__(self):
-        self._plugins = []
+        self._plugins = {}
 
 
     def addPlugin(self, plugin):
-        self._plugins.append(plugin)
+        self._plugins[plugin.name] = plugin
 
 
     def listPluginNames(self):
-        return [x.name for x in self._plugins]
+        return list(self._plugins)
 
 
     def parse(self, infile):
@@ -42,7 +42,7 @@ class Parser(object):
         seekable = StringIO(guts)
 
         chosen = []
-        for plugin in self._plugins:
+        for plugin in self._plugins.values():
             seekable.seek(0)
             try:
                 prob = plugin.readProbability(seekable)
@@ -66,9 +66,11 @@ class Parser(object):
             try:
                 parsed = plugin.parse(seekable)
                 # add ppo metadata
-                parsed['_ppo'] = {
-                    'parser': plugin.name,
-                }
+                if '_ppo' not in parsed:
+                    parsed['_ppo'] = {}
+
+                if 'parser' not in parsed['_ppo']:
+                    parsed['_ppo']['parser'] = plugin.name
                 break
             except Exception:
                 err_string = traceback.format_exc()
@@ -82,10 +84,16 @@ class Parser(object):
         return parsed
 
 
-    def normalize(self, infile):
+    def normalize(self, data):
         """
         Normalize already-parsed data.
         """
+        plugin_name = data['_ppo']['parser']
+        plugin = self._plugins[plugin_name]
+        normalized = plugin.normalize(data)
+        normalized['_ppo'] = data['_ppo'].copy()
+        normalized['_ppo']['normalized'] = True
+        return normalized
 
 
 def getPlugins(package):

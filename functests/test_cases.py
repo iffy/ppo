@@ -48,6 +48,10 @@ class TestParse(TestCase):
     maxDiff = None
 
 
+
+def parseAndNormalize(infile):
+    return normalize(parse(infile))
+
 class TestNormalize(TestCase):
 
     maxDiff = None
@@ -93,5 +97,5 @@ for name, files in samples.items():
 
     # out -> norm
     setattr(TestNormalize, test_name,
-        makeTestFunc(test_name, files['out'], files['norm'], normalize))
+        makeTestFunc(test_name, files['out'], files['norm'], parseAndNormalize))
 
