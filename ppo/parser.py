@@ -8,14 +8,16 @@ import importlib
 import traceback
 from StringIO import StringIO
 
+import structlog
+
+logger = structlog.get_logger()
+
+
 from ppo import plugins
 
 class ParseError(Exception): pass
 class NoWillingParsers(Exception): pass
 
-
-def log(*messages):
-    sys.stderr.write(' '.join(map(str, messages)) + '\n')
 
 
 class Parser(object):
