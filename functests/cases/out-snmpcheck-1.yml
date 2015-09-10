@@ -1,0 +1,501 @@
+_ppo:
+  parser: snmpcheck
+target: 10.0.0.5
+meta:
+  starttime: "2015-08-26 11:49:08"
+  runtime: 73.74 seconds
+system:
+  hostname: SRV2
+  description: "Hardware: x86 Family 6 Model 12 Stepping 2 AT/AT COMPATIBLE - Software: Windows 2000 Version 5.0 (Build 2195 Uniprocessor Free)"
+  uptime_system: "20 days, 19:43:36.09"
+  uptime_snmp: "146 days, 22:06:59.30"
+  motd: "-"
+  domain: "WORKGROUP"
+devices:
+  - id: 1
+    type: Processor
+    status: Running
+    description: Intel
+  - id: 10
+    type: Serial Port
+    status: Unknown
+    description: "COM1:"
+  - id: 11
+    type: Serial Port
+    status: Unknown
+    description: "COM2:"
+  - id: 2
+    type: Network
+    status: Unknown
+    description: MS TCP Loopback interface
+  - id: 3
+    type: Network
+    status: Unknown
+    description: VMware Accelerated AMD PCNet Adapter
+  - id: 4
+    type: Disk Storage
+    status: Unknown
+    description: A:\
+  - id: 5
+    type: Disk Storage
+    status: Unknown
+    description: D:\
+  - id: 6
+    type: Disk Storage
+    status: Running
+    description: "Fixed Disk"
+  - id: 7
+    type: Keyboard
+    status: Running
+    description: "IBM enhanced (101- or 102-key) keyboard, Subtype=(0)"
+  - id: 8
+    type: Pointing
+    status: Running
+    description: "3-Buttons  (with wheel)"
+  - id: 9
+    type: Parallel Port
+    status: Unknown
+    description: "LPT1:"
+storage:
+  - name: 'A:\'
+    device_id: 1
+    device_type: Removable Disk
+    filesystem_type: Unknown
+  - name: 'C:\'
+    label: Serial Number e448e451
+    device_id: 2
+    device_type: Fixed Disk
+    filesystem_type: NTFS
+    device_units: 2048
+    memory_size: 3.3G
+    memory_used: 2.0G
+    memory_free: 1.4G
+  - name: 'D:\'
+    device_id: 3
+    device_type: Compact Disc
+    filesystem_type: Unknown
+  - name: Virtual Memory
+    device_id: 4
+    device_type: Virtual Memory
+    filesystem_type: Unknown
+    device_units: 65536
+    memory_size: 864M
+    memory_used: 124M
+    memory_free: 741M
+user_accounts:
+  - Administrator
+  - Guest
+  - IUSR_SRV2
+  - IWAM_SRV2
+  - TsInternetUser
+  - admin
+  - lisa
+  - mark
+  - ned
+  - nick
+  - sqlusr
+  - todd
+processes:
+  - pid: 1
+    name: System Idle Process
+    type: operating system
+    status: running 
+  - pid: 1208
+    name: sqlagent.exe
+    type: application
+    status: running 
+  - pid: 1340
+    name: dllhost.exe
+    type: application
+    status: running 
+  - pid: 144
+    name: dllhost.exe
+    type: application
+    status: running 
+  - pid: 1548
+    name: dfssvc.exe
+    type: application
+    status: running 
+  - pid: 1620
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 172
+    name: smss.exe
+    type: application
+    status: running 
+  - pid: 1740
+    name: sqlservr.exe
+    type: application
+    status: running 
+  - pid: 200
+    name: csrss.exe
+    type: application
+    status: running 
+  - pid: 220
+    name: WINLOGON.EXE
+    type: application
+    status: running 
+  - pid: 248
+    name: services.exe
+    type: application
+    status: running 
+  - pid: 260
+    name: LSASS.EXE
+    type: application
+    status: running 
+  - pid: 456
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 488
+    name: SPOOLSV.EXE
+    type: application
+    status: running 
+  - pid: 520
+    name: msdtc.exe
+    type: application
+    status: running 
+  - pid: 624
+    name: svchost.exe
+    type: application
+    status: running 
+  - pid: 652
+    name: LLSSRV.EXE
+    type: application
+    status: running 
+  - pid: 676
+    name: CMD.EXE
+    type: application
+    status: running 
+  - pid: 740
+    name: regsvc.exe
+    type: application
+    status: running 
+  - pid: 752
+    name: mstask.exe
+    type: application
+    status: running 
+  - pid: 776
+    name: snmp.exe
+    type: application
+    status: running 
+  - pid: 8
+    name: System
+    type: operating system
+    status: running 
+  - pid: 808
+    name: vmtoolsd.exe
+    type: application
+    status: running 
+  - pid: 892
+    name: winmgmt.exe
+    type: application
+    status: running 
+  - pid: 904
+    name: winvnc4.exe
+    type: application
+    status: runnable 
+  - pid: 916
+    name: svchost.exe
+    type: unknown
+    status: not runnable 
+  - pid: 936
+    name: inetinfo.exe
+    type: device driver
+    status: invalid
+network_info:
+  ip_forwarding_enabled: 'no'
+  default_ttl: 128
+  tcp_segments_received: 3417825
+  tcp_segments_sent: 2776313
+  tcp_segments_retrans.: 476
+  input_datagrams: 3481507
+  delivered_datagrams: 3481445
+  output_datagrams: 2803029
+network_interfaces:
+  - name: "MS TCP Loopback interface\0"
+    status: up
+    interface_speed: 10 Mbps
+    ip_address: 127.0.0.1
+    netmask: 255.0.0.0
+    mtu: 1500
+    bytes_in: 999190
+    bytes_out: 999190
+  - name: "VMware Accelerated AMD PCNet Adapter\0"
+    status: up
+    hardware_address: "00:50:56:af:63:60"
+    interface_speed: 1000 Mbps
+    ip_address: 10.0.0.5
+    netmask: 255.255.254.0
+    mtu: 1500
+    bytes_in: 296594873
+    bytes_out: 1250570309
+routing:
+  - destination: 127.0.0.0
+    next_hop: 127.0.0.1
+    mask: 255.0.0.0
+    metric: "1"
+  - destination: 192.168.12.0
+    next_hop: 10.0.0.5
+    mask: 255.255.254.0
+    metric: "1"
+  - destination: 10.0.0.5
+    next_hop: 127.0.0.1
+    mask: 255.255.255.255
+    metric: "1"
+  - destination: 192.168.13.255
+    next_hop: 10.0.0.5
+    mask: 255.255.255.255
+    metric: "1"
+  - destination: 224.0.0.0
+    next_hop: 10.0.0.5
+    mask: 224.0.0.0
+    metric: "1"
+network_services:
+  - "Alerter"
+  - "Automatic Updates"
+  - "COM+ Event System"
+  - "Computer Browser"
+  - "DHCP Client"
+  - "DNS Client"
+  - "Distributed File System"
+  - "Distributed Link Tracking Client"
+  - "Distributed Transaction Coordinator"
+  - "Event Log"
+  - "FTP Publishing Service"
+  - "IIS Admin Service"
+  - "IPSEC Policy Agent"
+  - "License Logging Service"
+  - "Logical Disk Manager"
+  - "MSSQLSERVER"
+  - "Messenger"
+  - "Microsoft Search"
+  - "NT LM Security Support Provider"
+  - "Plug and Play"
+  - "Print Spooler"
+  - "Protected Storage"
+  - "Remote Procedure Call (RPC)"
+  - "Remote Registry Service"
+  - "Removable Storage"
+  - "RunAs Service"
+  - "SNMP Service"
+  - "SQLSERVERAGENT"
+  - "Security Accounts Manager"
+  - "Server"
+  - "Simple Mail Transport Protocol (SMTP)"
+  - "System Event Notification"
+  - "TCP/IP NetBIOS Helper Service"
+  - "Task Scheduler"
+  - "Telephony"
+  - "VMTools"
+  - "VNC Server Version 4"
+  - "Windows Management Instrumentation"
+  - "Windows Management Instrumentation Driver Extensions"
+  - "Workstation"
+  - "World Wide Web Publishing Service"
+tcp_ports:
+  - local_address: 0.0.0.0
+    local_port: 1025
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 1026
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 1027
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 1030
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 1038
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 135
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 21
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 25
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 3372
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 443
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 445
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 5800
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 5900
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 6532
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 0.0.0.0
+    local_port: 80
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 127.0.0.1
+    local_port: 27900
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 10.0.0.5
+    local_port: 1038
+    remote_address: 192.168.12.107
+    remote_port: "-"
+    state: Close wait
+  - local_address: 10.0.0.5
+    local_port: 139
+    remote_address: 0.0.0.0
+    remote_port: "-"
+    state: Listening
+  - local_address: 10.0.0.5
+    local_port: 1975
+    remote_address: 192.168.13.220
+    remote_port: "-"
+    state: Time wait
+  - local_address: 10.0.0.5
+    local_port: 1976
+    remote_address: 192.168.13.220
+    remote_port: "-"
+    state: Time wait
+  - local_address: 10.0.0.5
+    local_port: 1977
+    remote_address: 192.168.13.220
+    remote_port: "-"
+    state: Time wait
+  - local_address: 10.0.0.5
+    local_port: 1983
+    remote_address: 192.168.13.210
+    remote_port: "-"
+    state: Time wait
+udp_ports:
+  - local_address: 0.0.0.0
+    local_port: 1029
+  - local_address: 0.0.0.0
+    local_port: 135
+  - local_address: 0.0.0.0
+    local_port: 1434
+  - local_address: 0.0.0.0
+    local_port: 161
+  - local_address: 0.0.0.0
+    local_port: 3456
+  - local_address: 0.0.0.0
+    local_port: 445
+  - local_address: 10.0.0.5
+    local_port: 137
+  - local_address: 10.0.0.5
+    local_port: 138
+software_components:
+  - "1. Windows 2000 Hotfix (SP4) KB810217"
+  - "10. Windows 2000 Hotfix - KB828741"
+  - "11. Windows 2000 Hotfix - KB828749"
+  - "12. Windows 2000 Hotfix - KB835732"
+  - "13. Windows 2000 Hotfix - KB837001"
+  - "14. Windows 2000 Hotfix - KB839643"
+  - "15. Windows 2000 Hotfix - KB839645"
+  - "16. Windows 2000 Hotfix - KB840987"
+  - "17. Windows 2000 Hotfix - KB841356"
+  - "18. Windows 2000 Hotfix - KB841533"
+  - "19. Windows 2000 Hotfix - KB841872"
+  - "2. Windows 2000 Hotfix (SP4) KB817606"
+  - "20. Windows 2000 Hotfix - KB841873"
+  - "21. Windows 2000 Hotfix - KB842526"
+  - "22. Windows 2000 Hotfix - KB842773"
+  - "23. Microsoft Data Access Components KB870669"
+  - "24. Windows 2000 Hotfix - KB871250"
+  - "25. Windows 2000 Hotfix - KB873333"
+  - "26. Windows 2000 Hotfix - KB873339"
+  - "27. Windows 2000 Hotfix - KB883939"
+  - "28. Windows 2000 Hotfix - KB885250"
+  - "29. Windows 2000 Hotfix - KB885834"
+  - "3. Windows 2000 Hotfix - KB819696"
+  - "30. Windows 2000 Hotfix - KB885835"
+  - "31. Windows 2000 Hotfix - KB885836"
+  - "32. Windows 2000 Hotfix - KB888113"
+  - "33. Windows 2000 Hotfix - KB890046"
+  - "34. Windows 2000 Hotfix - KB890859"
+  - "35. Windows 2000 Hotfix - KB891781"
+  - "36. Windows 2000 Hotfix - KB893066"
+  - "37. Windows 2000 Hotfix - KB893086"
+  - "38. Windows Installer 3.1 (KB893803)"
+  - "39. Windows 2000 Hotfix - KB894320"
+  - "4. Windows 2000 Hotfix - KB823182"
+  - "40. Windows 2000 Hotfix - KB896358"
+  - "41. Windows 2000 Hotfix - KB896422"
+  - "42. Windows 2000 Hotfix - KB897715"
+  - "43. Microsoft SQL Server 2000"
+  - "44. Windows 2000 Hotfix (Pre-SP4) [See q323172 for more information]"
+  - "45. Windows 2000 Hotfix (Pre-SP4) [See Q326830 for more information]"
+  - "46. Windows 2000 Hotfix (Pre-SP4) [See Q326886 for more information]"
+  - "47. Windows 2000 Hotfix (Pre-SP4) [See Q329115 for more information]"
+  - "48. Windows 2000 Hotfix (Pre-SP4) Q329170"
+  - "49. Windows 2000 Hotfix (SP4) Q329553"
+  - "5. Windows 2000 Hotfix - KB823559"
+  - "50. Windows 2000 Hotfix (Pre-SP4) [See Q329834 for more information]"
+  - "51. Windows 2000 Hotfix (Pre-SP4) Q810833"
+  - "52. Windows 2000 Hotfix (SP4) Q811114"
+  - "53. Windows 2000 Hotfix (SP4) Q814033"
+  - "54. Windows Media Player Hotfix [See Q828026 for more information]"
+  - "55. VNC Free Edition 4.1.1"
+  - "56. WinRAR archiver"
+  - "57. VMware Tools"
+  - "58. Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.4148"
+  - "59. ActiveState ActivePython 2.4.3"
+  - "6. Windows 2000 Hotfix - KB824105"
+  - "60. WebFldrs"
+  - "7. Windows 2000 Hotfix - KB824151"
+  - "8. Windows 2000 Hotfix - KB826232"
+webserver_info:
+  total bytes sent low word: 995M
+  total bytes received low word: 73M
+  total files sent: 2364
+  current anonymous users: 6
+  total non anonymous users: 421155
+  max non anonymous users: 70
+  connection attempts: 70
+  logon attempts: 423692
+  total gets: 421305
+  total posts: 77
+  total heads: 242369
+  total others: 1418
+  total cgi requests: 175464
+  total bgi requests: 6
+  total not found errors: 3
+

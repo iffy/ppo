@@ -1,0 +1,18 @@
+_ppo:
+  parser: theharvester
+theharvester:
+  version: '2.5'
+resources:
+  - Google
+emails:
+  - green@foobar.com
+  - security@foobar.com
+  - hostinginfo@foobar.com
+  - socialteam@foobar.com
+  - FeedbackUK@foobar.com
+  - "@foobar.com"
+hosts:
+  - ip: 10.0.5.1
+    domain: something.foobar.com
+  - ip: 77.66.55.44
+    domain: www.foobar.com

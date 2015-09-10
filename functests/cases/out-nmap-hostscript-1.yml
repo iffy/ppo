@@ -1,3 +1,5 @@
+_ppo:
+  parser: nmap-xml
 nmaprun:
   scanner: nmap
   args: "nmap -p139,445 --script smb-os-discovery.nse -oX smb-os.xml 10.0.1.5"
@@ -32,6 +34,7 @@ hosts:
       state: "up"
       reason: "arp-response"
       reason_ttl: 0
+    ipv4: 10.0.1.5
     addresses:
       - addr: "10.0.1.5"
         addrtype: "ipv4"
