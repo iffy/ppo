@@ -1,8 +1,11 @@
-- foo: "1"
-  bar: "4"
-  baz: "6"
-  hello guys: something
-- foo: "6"
-  bar: "7"
-  baz: "7"
-  hello guys: "my , thing"
+_ppo:
+  parser: csv
+data:
+  - foo: "1"
+    bar: "4"
+    baz: "6"
+    hello guys: something
+  - foo: "6"
+    bar: "7"
+    baz: "7"
+    hello guys: "my , thing"

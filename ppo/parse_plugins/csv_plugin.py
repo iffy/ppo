@@ -36,5 +36,7 @@ class CSVParser(plugins.ParserPlugin):
 
     def parse(self, instream):
         parsed = csv.DictReader(instream)
-        return list(parsed)
+        return {
+            'data': list(parsed),
+        }
 

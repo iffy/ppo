@@ -23,7 +23,7 @@ ap.add_argument('-f', '--format',
     help='Output format.'
          '  You can also set this with the PPO_OUTPUT_FORMAT '
          'environment variable.'
-         '  (default: %(default)s)')
+         '  (current default: %(default)s)')
 
 ap.add_argument('-s', '--strict', action='store_true',
     help="Without this option, unparseable input is returned unchanged. "
@@ -32,6 +32,13 @@ ap.add_argument('-s', '--strict', action='store_true',
 
 ap.add_argument('-v', '--verbose', action='store_true',
     help="Show debug/logging output")
+
+ap.add_argument('-x', '--exclude', action='append',
+    default=filter(None, os.environ.get('PPO_EXCLUDE_PLUGINS', '').split(',')),
+    help='Exclude plugins from being used.  Can be specified multiple times.'
+         '  Use --ls to get a list of plugin names.  You can also set this '
+         'with a comma-delimited list in PPO_EXCLUDE_PLUGINS.'
+         '  (current default: %(default)s)')
 
 ap.add_argument('--ls', action='store_true',
     help='Print out list of parsing plugins and exit')
@@ -50,7 +57,7 @@ def run():
 
     infile = StringIO(sys.stdin.read())
     try:
-        parsed = parse(infile)
+        parsed = parse(infile, exclude=args.exclude)
     except NoWillingParsers:
         if args.strict:
             raise
