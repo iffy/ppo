@@ -35,19 +35,27 @@ class Parser(object):
         return [x.name for x in self._plugins]
 
 
-    def parse(self, infile):
+    def parse(self, infile, exclude=None):
+        log = logger.bind(action='parse')
+        exclude = exclude or []
+        if exclude:
+            log.msg(excluding=exclude)
+
+        guts = infile.read()
         # XXX I don't love reading everything into memory.  It would be
         # better to wrap this file in an always seekable stream that
         # would let you seek to the beginning of stdin.
-        log = logger.bind(action='parse')
-
-        guts = infile.read()
         seekable = StringIO(guts)
 
         chosen = []
         log.msg('Finding candidate plugins...')
         for plugin in self._plugins:
             l = log.bind(plugin=plugin.name)
+
+            if plugin.name in exclude:
+                l.msg('excluded')
+                continue
+
             seekable.seek(0)
             try:
                 prob = plugin.readProbability(seekable)
@@ -72,12 +80,15 @@ class Parser(object):
             seekable.seek(0)
             try:
                 parsed = plugin.parse(seekable)
-                l.msg('success')
-                # add ppo metadata
-                parsed['_ppo'] = {
-                    'parser': plugin.name,
-                }
-                break
+                if parsed is not None:
+                    l.msg('success')
+                    # add ppo metadata
+                    parsed['_ppo'] = {
+                        'parser': plugin.name,
+                    }
+                    break
+                else:
+                    l.msg('no output')
             except Exception:
                 err_string = traceback.format_exc()
                 errors.append((plugin.name, err_string))
@@ -87,8 +98,10 @@ class Parser(object):
             log.msg('no parsed data')
             for plugin_name, err_string in errors:
                 log.msg(plugin=plugin.name, traceback=err_string)
-            raise Exception('Failed to parse using these plugins: %s' % (
-                ', '.join([x.name for x in chosen])))
+            raise Exception('Failed to parse using these plugins: %s '
+                            '(excluded plugins: %s)' % (
+                    ', '.join([x.name for x in chosen]),
+                    ', '.join(exclude)))
         return parsed
 
 
