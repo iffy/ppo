@@ -1,0 +1,14 @@
+_ppo:
+  parser: sqlite-db
+tables:
+  foo:
+    - id: 1
+      name: apple
+    - id: 2
+      name: banana
+    - id: 3
+      name: carrot
+  bar:
+    - a: 12
+      b: 14
+      stuff: some stuff

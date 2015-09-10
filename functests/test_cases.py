@@ -75,8 +75,8 @@ def makeTestFunc(name, infile, outfile):
             expected_output = open(outfile, 'rb').read()
 
         # seeing differences in YAML is easier than python dicts
-        expected_yaml = yaml.dump(expected_output, default_flow_style=False)
-        actual_yaml = yaml.dump(parsed, default_flow_style=False)
+        expected_yaml = yaml.safe_dump(expected_output, default_flow_style=False)
+        actual_yaml = yaml.safe_dump(parsed, default_flow_style=False)
         diff = diffStrings(expected_yaml, actual_yaml, 'expected', 'actual')
         self.assertEqual(expected_yaml, actual_yaml, '\n' + ''.join(diff))
     return func
