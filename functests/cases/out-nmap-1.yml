@@ -32,6 +32,7 @@ hosts:
       state: up
       reason: arp-response
       reason_ttl: 0
+    ipv4: 192.168.13.203
     addresses:
       - addr: 192.168.13.203
         addrtype: ipv4
