@@ -1,0 +1,152 @@
+_ppo:
+  parser: nmap-xml
+  normalized: true
+objects:
+  - object: host
+    ipv4: 192.168.13.205
+    mac: 00:50:56:AF:3E:05
+    state: up
+  - object: port
+    port: 21
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 21
+    host: 192.168.13.205
+    service: "ftp"
+  - object: port
+    port: 80
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 80
+    host: 192.168.13.205
+    service: "http"
+  - object: port
+    port: 135
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 135
+    host: 192.168.13.205
+    service: "msrpc"
+  - object: port
+    port: 139
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 139
+    host: 192.168.13.205
+    service: "netbios-ssn"
+  - object: port
+    port: 443
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 443
+    host: 192.168.13.205
+    service: "https"
+  - object: port
+    port: 445
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 445
+    host: 192.168.13.205
+    service: "microsoft-ds"
+  - object: port
+    port: 1026
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 1026
+    host: 192.168.13.205
+    service: "LSA-or-nterm"
+  - object: port
+    port: 1029
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 1029
+    host: 192.168.13.205
+    service: "ms-lsa"
+  - object: port
+    port: 1030
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 1030
+    host: 192.168.13.205
+    service: "iad1"
+  - object: port
+    port: 1036
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 1036
+    host: 192.168.13.205
+    service: "nsstp"
+  - object: port
+    port: 1521
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 1521
+    host: 192.168.13.205
+    service: "oracle"
+  - object: port
+    port: 2030
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 2030
+    host: 192.168.13.205
+    service: "device2"
+  - object: port
+    port: 2100
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 2100
+    host: 192.168.13.205
+    service: "amiganetfs"
+  - object: port
+    port: 3372
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 3372
+    host: 192.168.13.205
+    service: "msdtc"
+  - object: port
+    port: 3389
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 3389
+    host: 192.168.13.205
+    service: "ms-wbt-server"
+  - object: port
+    port: 4443
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 4443
+    host: 192.168.13.205
+    service: "pharos"
+  - object: port
+    port: 7778
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 7778
+    host: 192.168.13.205
+    service: "interwise"
+  - object: port
+    port: 8080
+    state: open
+    host: 192.168.13.205
+  - object: service
+    port: 8080
+    host: 192.168.13.205
+    service: "http-proxy"

@@ -1,0 +1,28 @@
+_ppo:
+  parser: nmap-xml
+  normalized: true
+objects:
+  - object: host
+    ipv4: 10.0.1.5
+    mac: 00:50:56:AF:3E:05
+    state: up
+  - object: port
+    port: 139
+    host: 10.0.1.5
+    state: open
+  - object: service
+    port: 139
+    host: 10.0.1.5
+    service: netbios-ssn
+  - object: port
+    port: 445
+    host: 10.0.1.5
+    state: open
+  - object: service
+    port: 445
+    host: 10.0.1.5
+    service: microsoft-ds
+  - object: host/os
+    host: 10.0.1.5
+    flavor: windows
+    version: Windows 5.1
