@@ -2,6 +2,7 @@
 # See LICENSE for details.
 
 from ppo import plugins
+from ppo.state import Registry
 
 from functools import wraps
 import re
@@ -19,37 +20,11 @@ def ignore(error_types):
     return deco
 
 
-class Registry(object):
-
-    def __init__(self, instance=None, data=None):
-        self.data = data or {}
-        self._instance = instance
-
-    def __get__(self, obj, cls):
-        return Registry(obj, self.data)
-
-    def route(self, name):
-        def deco(f):
-            self.data[name] = f
-            return f
-        return deco
-
-    def find(self, name):
-        for pattern, func in self.data.items():
-            if pattern in name:
-                return func.__get__(self._instance, self._instance.__class__)
-
-
 class snmpcheckParser(object):
 
     section = None
 
     sections = Registry()
-    # sections = {
-    #     'Connected to': 'connected_to',
-    #     'Starting enumeration at': 'start_enum',
-    #     'Enumerated': 'end_enum',
-    # }
 
     r_kv = re.compile(r'(.*?)\s*:\s*(.*)')
 
@@ -77,7 +52,9 @@ class snmpcheckParser(object):
     def dataReceived(self, data):
         if data.strip().startswith('[*] '):
             # new section
-            self.section = self.sections.find(data)
+            found = self.sections.find(data)
+            if found:
+                self.section = found[0]
             self.state = {}
 
         if self.section:
