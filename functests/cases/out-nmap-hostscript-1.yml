@@ -34,6 +34,7 @@ hosts:
       state: "up"
       reason: "arp-response"
       reason_ttl: 0
+    ipv4: 10.0.1.5
     addresses:
       - addr: "10.0.1.5"
         addrtype: "ipv4"

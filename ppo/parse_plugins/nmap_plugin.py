@@ -85,10 +85,13 @@ class NmapXMLParser(plugins.ParserPlugin):
         ret.update({
             'addresses': [],
         })
+        ipv4 = None
 
         for tag in host:
             if tag.tag == 'address':
                 ret['addresses'].append(self._parseNode(tag))
+                if ret['addresses'][-1]['addrtype'] == 'ipv4':
+                    ipv4 = ret['addresses'][-1]['addr']
             elif tag.tag == 'ports':
                 ports = ret.setdefault('ports', [])
                 for child in tag:
@@ -114,6 +117,9 @@ class NmapXMLParser(plugins.ParserPlugin):
                     }
                 }.get(tag.tag, {})
                 ret[tag.tag] = self._parseNode(tag, mapping)
+
+        if ipv4:
+            ret['ipv4'] = ipv4
         return ret
 
     def _parseExtraPorts(self, elem):
