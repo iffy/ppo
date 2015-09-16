@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.47 scan initiated Wed Sep 16 13:25:44 2015 as: nmap -p 443 -&#45;script ssl-enum-ciphers -oX /tmp/foo.xml -PN example.com -->
+<nmaprun scanner="nmap" args="nmap -p 443 -&#45;script ssl-enum-ciphers -oX /tmp/foo.xml -PN example.com" start="1442424344" startstr="Wed Sep 16 13:25:44 2015" version="6.47" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="443"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1442424344" endtime="1442424348">
+    <status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.12.200" addrtype="ipv4"/>
+<hostnames>
+<hostname name="example.com" type="user"/>
+</hostnames>
+<ports>
+    <port protocol="tcp" portid="443">
+    <state state="open" reason="syn-ack" reason_ttl="64"/>
+<service name="https" method="table" conf="3"/>
+<script id="ssl-enum-ciphers" output="&#xa;  SSLv3: No supported ciphers found&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_RC4_128_SHA - strong&#xa;    compressors: &#xa;      NULL&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_RC4_128_SHA - strong&#xa;    compressors: &#xa;      NULL&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 - strong&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 - strong&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 - strong&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 - strong&#xa;      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 - strong&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 - strong&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 - strong&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong&#xa;      TLS_RSA_WITH_RC4_128_SHA - strong&#xa;    compressors: &#xa;      NULL&#xa;  least strength: strong">
+    <table key="SSLv3">
+        <table key="ciphers">
+        </table>
+        <table key="compressors">
+        </table>
+    </table>
+    <table key="TLSv1.0">
+        <table key="ciphers">
+            <table>
+                <elem key="strength">strong</elem>
+                <elem key="name">TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+            </table>
+            <table>
+                <elem key="strength">strong</elem>
+                <elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+            </table>
+        </table>
+        <table key="compressors">
+            <elem>NULL</elem>
+        </table>
+    </table>
+    <table key="TLSv1.1">
+        <table key="ciphers">
+            <table>
+                <elem key="strength">strong</elem>
+                <elem key="name">TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+            </table>
+            <table>
+                <elem key="strength">strong</elem>
+                <elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+            </table>
+        </table>
+        <table key="compressors">
+            <elem>NULL</elem>
+        </table>
+    </table>
+    <elem key="least strength">strong</elem>
+</script>
+</port>
+</ports>
+<times srtt="51269" rttvar="51269" to="256345"/>
+</host>
+<runstats>
+    <finished time="1442424348" timestr="Wed Sep 16 13:25:48 2015" elapsed="3.52" summary="Nmap done at Wed Sep 16 13:25:48 2015; 1 IP address (1 host up) scanned in 3.52 seconds" exit="success"/>
+<hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

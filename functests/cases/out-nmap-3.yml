@@ -1,0 +1,152 @@
+_ppo:
+  parser: nmap-xml
+nmaprun:
+  scanner: nmap
+  args: "nmap -p 443 --script ssl-enum-ciphers -oX /tmp/foo.xml -PN example.com"
+  start: 1442424344
+  startstr: "Wed Sep 16 13:25:44 2015"
+  version: "6.47"
+  xmloutputversion: "1.04"
+  scaninfo:
+    type: syn
+    protocol: tcp
+    numservices: 1
+    services: "443"
+  verbose:
+    level: 0
+  debugging:
+    level: 0
+  runstats:
+    finished:
+      time: 1442424348
+      timestr: "Wed Sep 16 13:25:48 2015"
+      elapsed: 3.52
+      summary: "Nmap done at Wed Sep 16 13:25:48 2015; 1 IP address (1 host up) scanned in 3.52 seconds"
+      exit: success
+    hosts:
+      up: 1
+      down: 0
+      total: 1
+hosts:
+  - starttime: 1442424344
+    endtime: 1442424348
+    status:
+      state: up
+      reason: user-set
+      reason_ttl: 0
+    ipv4: 192.168.12.200
+    hostname: example.com
+    addresses:
+      - addr: 192.168.12.200
+        addrtype: ipv4
+    hostnames:
+      - name: example.com
+        type: user
+    ports:
+      - protocol: tcp
+        port: 443
+        state:
+          state: open
+          reason: syn-ack
+          reason_ttl: 64
+        service:
+          name: https
+          method: table
+          conf: 3
+        scripts:
+          - id: ssl-enum-ciphers
+            least_strength: "strong"
+            tables:
+              - key: SSLv3
+                ciphers: []
+                compressors: []
+              - key: TLSv1.0
+                ciphers:
+                  - strength: strong
+                    name: TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA
+                  - strength: strong
+                    name: TLS_DHE_RSA_WITH_AES_128_CBC_SHA
+                compressors: []
+              - key: TLSv1.1
+                ciphers:
+                  - strength: strong
+                    name: TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA
+                  - strength: strong
+                    name: TLS_DHE_RSA_WITH_AES_128_CBC_SHA
+                compressors: []
+            output: |
+                SSLv3: No supported ciphers found
+                  TLSv1.0: 
+                    ciphers: 
+                      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong
+                      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_RSA_WITH_RC4_128_SHA - strong
+                    compressors: 
+                      NULL
+                  TLSv1.1: 
+                    ciphers: 
+                      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong
+                      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_RSA_WITH_RC4_128_SHA - strong
+                    compressors: 
+                      NULL
+                  TLSv1.2: 
+                    ciphers: 
+                      TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 - strong
+                      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 - strong
+                      TLS_DHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 - strong
+                      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 - strong
+                      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 - strong
+                      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 - strong
+                      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 - strong
+                      TLS_ECDHE_RSA_WITH_RC4_128_SHA - strong
+                      TLS_RSA_WITH_3DES_EDE_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_128_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_128_CBC_SHA256 - strong
+                      TLS_RSA_WITH_AES_128_GCM_SHA256 - strong
+                      TLS_RSA_WITH_AES_256_CBC_SHA - strong
+                      TLS_RSA_WITH_AES_256_CBC_SHA256 - strong
+                      TLS_RSA_WITH_AES_256_GCM_SHA384 - strong
+                      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA - strong
+                      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA - strong
+                      TLS_RSA_WITH_RC4_128_SHA - strong
+                    compressors: 
+                      NULL
+                  least strength: strong
+    times:
+      srtt: 51269
+      rttvar: 51269
+      to: 256345
