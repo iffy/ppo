@@ -1,14 +1,15 @@
 _ppo:
   parser: nikto
 meta:
-  - version: 2.1.6
+  version: 2.1.6
 hosts_tested: 1
 targets:
   - ip: 10.0.0.5
     hostname: 10.0.0.5
     port: 80
-    start: "2015-09-30 18:56:02 (GMT-4)"
-    end: "2015-09-30 19:06:16 (GMT-4)"
+    start: "2015-09-30 18:56:02"
+    timezone: "GMT-4"
+    end: "2015-09-30 19:06:16"
     seconds: 614
     meta:
       total_requests: 7356

@@ -30,7 +30,7 @@ class CSVParser(plugins.ParserPlugin):
                     return 20
                 else:
                     return 15
-            return 1
+            return 0
         except Exception:
             pass
 
