@@ -1,0 +1,19 @@
+_ppo:
+  parser: nbtscan
+target: 10.0.5.200-254
+results:
+  - ip: 10.0.5.215
+    name: REDHAT
+    server: <server>
+    user: REDHAT
+    mac: 00:00:00:00:00:00
+  - ip: 10.0.5.218
+    name: WIN7
+    server: <server>
+    user: <unknown>
+    mac: 00:50:56:af:5d:11
+  - ip: 10.0.5.220
+    name: MASTER
+    server: <server>
+    user: <unknown>
+    mac: 00:50:56:af:66:11
