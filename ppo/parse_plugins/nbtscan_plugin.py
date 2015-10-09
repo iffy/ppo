@@ -2,28 +2,50 @@
 # See LICENSE for details.
 
 from ppo import plugins
+import structlog
 
+logger = structlog.get_logger()
 
 class nbtscanParser(object):
 
+    intable = False
+    ranges = None
+    labels = [
+        ('IP address', 'ip'),
+        ('NetBIOS Name', 'name'),
+        ('Server', 'server'),
+        ('User', 'user'),
+        ('MAC address', 'mac'),
+    ]
+
     def __init__(self):
         self.result = {}
-        self.intable = False
 
     def lineReceived(self, line):
+        logger.msg(line=line)
+        if not line.strip():
+            return
         if 'target' not in self.result:
+            # get the target
             self.result['target'] = line.split()[-1]
+        elif not self.ranges:
+            # have to determine table ranges
+            starts = []
+            for label,key in self.labels:
+                starts.append(line.index(label))
+            self.ranges = []
+            for i in xrange(len(starts)-1):
+                self.ranges.append((starts[i], starts[i+1]))
+            self.ranges.append((starts[-1],None))
         elif line.startswith('-------'):
+            # what follows is data
             self.intable = True
-        elif self.intable and line.strip():
-            ip, name, server, user, mac = line.split()
-            self.result.setdefault('results', []).append({
-                'ip': ip,
-                'name': name,
-                'server': server,
-                'user': user,
-                'mac': mac,
-            })
+        elif self.intable:
+            item = {}
+            for r,(label,key) in zip(self.ranges, self.labels):
+                data = line[r[0]:r[1]].strip() or None
+                item[key] = data
+            self.result.setdefault('results', []).append(item)
 
 
 class nbtscanPlugin(plugins.ParserPlugin):

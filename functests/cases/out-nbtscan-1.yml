@@ -7,6 +7,11 @@ results:
     server: <server>
     user: REDHAT
     mac: 00:00:00:00:00:00
+  - ip: 10.0.5.206
+    name: IS~FOO
+    server:
+    user: <unknown>
+    mac: 00:50:56:af:0e:11
   - ip: 10.0.5.218
     name: WIN7
     server: <server>
