@@ -1,0 +1,66 @@
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.0.2.3
++ Target Hostname:    10.0.2.3
++ Target Port:        80
++ Start Time:         2015-10-01 11:06:59 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Apache/1.3.23 (Unix)  (Red-Hat/Linux) mod_python/2.7.6 Python/1.5.2 mod_ssl/2.8.7 OpenSSL/0.9.6b DAV/1.0.3 PHP/4.1.2 mod_perl/1.26 mod_throttle/3.1.2
++ Server leaks inodes via ETags, header found with file /, inode: 244119, size: 2890, mtime: Tue Apr  9 14:56:58 2002
++ The anti-clickjacking X-Frame-Options header is not present.
++ OSVDB-27487: Apache is vulnerable to XSS via the Expect header
++ DAV/1.0.3 appears to be outdated (current is at least 2)
++ OpenSSL/0.9.6b appears to be outdated (current is at least 1.0.1e). OpenSSL 0.9.8r is also current.
++ mod_perl/1.26 appears to be outdated (current is at least 2.0.7)
++ PHP/4.1.2 appears to be outdated (current is at least 5.4.26)
++ mod_python/2.7.6 appears to be outdated (current is at least 3.3.1)
++ mod_throttle/3.1.2 appears to be outdated (current is at least 3.2.0)
++ Apache/1.3.23 appears to be outdated (current is at least Apache/2.4.7). Apache 2.0.65 (final release) and 2.2.26 are also current.
++ mod_ssl/2.8.7 appears to be outdated (current is at least 2.8.31) (may depend on server version)
++ Python/1.5.2 appears to be outdated (current is at least 2.7.5)
++ OSVDB-637: Enumeration of users is possible by requesting ~username (responds with 'Forbidden' for users, 'not found' for non-existent users).
++ Allowed HTTP Methods: GET, HEAD, OPTIONS, TRACE, POST, PUT, DELETE, CONNECT, PATCH, PROPFIND, PROPPATCH, MKCOL, COPY, MOVE, LOCK, UNLOCK 
++ OSVDB-397: HTTP method ('Allow' Header): 'PUT' method could allow clients to save files on the web server.
++ OSVDB-5646: HTTP method ('Allow' Header): 'DELETE' may allow clients to remove files on the web server.
++ HTTP method ('Allow' Header): 'CONNECT' may allow server to proxy client requests.
++ HTTP method: 'PATCH' may allow client to issue patch commands to server. See RFC-5789.
++ OSVDB-5647: HTTP method ('Allow' Header): 'MOVE' may allow clients to change file locations on the web server.
++ WebDAV enabled (UNLOCK LOCK MKCOL COPY PROPPATCH PROPFIND listed as allowed)
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-838: Apache/1.3.23 - Apache 1.x up 1.2.34 are vulnerable to a remote DoS and possible code execution. CAN-2002-0392.
++ OSVDB-4552: Apache/1.3.23 - Apache 1.3 below 1.3.27 are vulnerable to a local buffer overflow which allows attackers to kill any process on the system. CAN-2002-0839.
++ OSVDB-2733: Apache/1.3.23 - Apache 1.3 below 1.3.29 are vulnerable to overflows in mod_rewrite and mod_cgi. CAN-2003-0542.
++ mod_python/2.7.6 - mod_python 2.7.6 or older may allow attackers to execute functions remotely.
++ PHP/4.1.2 mod_perl/1.26 mod_throttle/3.1.2 - PHP below 4.3.3 may allow local attackers to safe mode and gain access to unauthorized files. http://www.securityfocus.com/bid/8201.
++ OSVDB-682: /usage/: Webalizer may be installed. Versions lower than 2.01-09 vulnerable to Cross Site Scripting (XSS). http://www.cert.org/advisories/CA-2000-02.html.
++ OSVDB-3268: /manual/: Directory indexing found.
++ OSVDB-3092: /manual/: Web server manual found.
++ OSVDB-3268: /icons/: Directory indexing found.
++ ERROR: Error limit (20) reached for host, giving up. Last error: 
++ Scan terminated:  0 error(s) and 30 item(s) reported on remote host
++ End Time:           2015-10-01 11:33:48 (GMT-4) (1609 seconds)
+---------------------------------------------------------------------------
++ Target IP:          10.2.2.2
++ Target Hostname:    10.2.2.2
++ Target Port:        80
++ Start Time:         2015-10-01 11:33:48 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Microsoft-IIS         
++ All CGI directories 'found', use '-C none' to test none
++ Uncommon header 'tcn' found, with contents: list
++ Apache mod_negotiation is enabled with MultiViews, which allows attackers to easily brute force file names. See http://www.wisec.it/sectou.php?id=4698ebdc59d15. The following alternatives for 'index' were found: index.asp
++ Multiple index files found: /index.html, /index.asp
++ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ OSVDB-3092: /_vti_txt/: FrontPage directory found.
++ OSVDB-12184: /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F36-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-3233: /_vti_bin/: FrontPage directory found.
++ OSVDB-474: /Sites/Knowledge/Membership/Inspired/ViewCode.asp: The default ViewCode.asp can allow an attacker to read any file on the machine. CVE-1999-0737. http://www.microsoft.com/technet/security/bulletin/MS99-013.asp.
++ OSVDB-7: /iissamples/exair/howitworks/Code.asp: Scripts within the Exair package on IIS 4 can be used for a DoS against the server. CVE-1999-0449. BID-193.
++ OSVDB-3092: /test.asp: This might be interesting...
++ 11491 requests: 0 error(s) and 13 item(s) reported on remote host
++ End Time:           2015-10-01 11:44:02 (GMT-4) (614 seconds)
+---------------------------------------------------------------------------
++ 2 host(s) tested
