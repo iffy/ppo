@@ -1,0 +1,7 @@
+Doing NBT name scan for addresses from 10.0.5.200-254
+
+IP address       NetBIOS Name     Server    User             MAC address      
+------------------------------------------------------------------------------
+10.0.5.215   REDHAT           <server>  REDHAT           00:00:00:00:00:00
+10.0.5.218   WIN7             <server>  <unknown>        00:50:56:af:5d:11
+10.0.5.220   MASTER           <server>  <unknown>        00:50:56:af:66:11
