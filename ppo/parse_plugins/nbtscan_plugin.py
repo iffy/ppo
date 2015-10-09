@@ -15,7 +15,7 @@ class nbtscanParser(object):
             self.result['target'] = line.split()[-1]
         elif line.startswith('-------'):
             self.intable = True
-        elif self.intable:
+        elif self.intable and line.strip():
             ip, name, server, user, mac = line.split()
             self.result.setdefault('results', []).append({
                 'ip': ip,
