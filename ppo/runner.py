@@ -52,8 +52,6 @@ def run():
 
     if args.verbose:
         structlog.configure(logger_factory=structlog.PrintLoggerFactory(sys.stderr))
-    else:
-        structlog.configure(logger_factory=structlog.ReturnLoggerFactory())
 
     infile = StringIO(sys.stdin.read())
     try:

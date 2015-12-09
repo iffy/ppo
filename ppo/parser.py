@@ -12,6 +12,9 @@ import structlog
 
 logger = structlog.get_logger()
 
+# silent by default
+structlog.configure(logger_factory=structlog.ReturnLoggerFactory())
+
 
 from ppo import plugins
 
