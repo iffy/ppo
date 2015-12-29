@@ -1,7 +1,11 @@
 # Copyright (c) The ppo team
 # See LICENSE for details.
 
+import codecs
+
 from ppo import plugins
+
+from structlog import get_logger
 
 
 class IPTablesLParser(plugins.ParserPlugin):
@@ -13,14 +17,17 @@ class IPTablesLParser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if first_part.startswith('Chain') and 'policy' in first_part:
+        if first_part.startswith(b'Chain') and b'policy' in first_part:
             return 50
 
     def parse(self, instream):
+        log = get_logger()
+        instream = codecs.getreader('utf-8')(instream)
         ret = {}
         current = None
         spacing = []
         for line in instream:
+            log.msg(line=line)
             if line.startswith('Chain'):
                 # line = 'Chain INPUT (policy ACCEPT 47 packets, 4639 bytes)'
                 parts = line.replace('(', '').replace(')', '').replace(',', '').split()

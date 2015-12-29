@@ -9,7 +9,7 @@ import os
 
 import structlog
 
-from io import StringIO
+from io import BytesIO
 
 from ppo.parser import parse, parser, NoWillingParsers
 
@@ -53,7 +53,7 @@ def run():
     if args.verbose:
         structlog.configure(logger_factory=structlog.PrintLoggerFactory(sys.stderr))
 
-    infile = StringIO(sys.stdin.read())
+    infile = BytesIO(sys.stdin.read())
     try:
         parsed = parse(infile, exclude=args.exclude)
     except NoWillingParsers:

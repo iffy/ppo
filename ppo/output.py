@@ -40,7 +40,8 @@ def _flattenThing(thing):
         simple_line = []
         for k,v in simples:
             value = (list(v) or ['[]'])[0]
-            simple_line.append('{0}: {1}'.format(r_ws.sub('_', k), value))
+            simple_line.append(six.u('{0}: {1}').format(
+                r_ws.sub('_', k), value))
         simple_line = ' '.join(simple_line)
         yield simple_line
 

@@ -6,6 +6,7 @@ from ppo import plugins
 from collections import defaultdict
 from functools import wraps
 import re
+import codecs
 
 
 class enum4LinuxParser(object):
@@ -295,7 +296,7 @@ class enum4LinuxParser(object):
             parts = re.split(r'(-+)', line)[1:]
             self._fields = defaultdict(lambda:0)
             for i,part in enumerate(parts):
-                self._fields[i/2] += len(part)
+                self._fields[i//2] += len(part)
         elif self.substate == 'shares':
             shares = self.result.setdefault('shares', [])
             share = {
@@ -339,11 +340,11 @@ class enum4linuxPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if 'Starting enum4linux' in first_part:
+        if b'Starting enum4linux' in first_part:
             return 50
 
     def parse(self, instream):
         parser = enum4LinuxParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.dataReceived(line.strip())
         return parser.result

@@ -6,7 +6,7 @@ import inspect
 import sys
 import importlib
 import traceback
-from io import StringIO
+from io import BytesIO
 
 import structlog
 
@@ -48,7 +48,7 @@ class Parser(object):
         # XXX I don't love reading everything into memory.  It would be
         # better to wrap this file in an always seekable stream that
         # would let you seek to the beginning of stdin.
-        seekable = StringIO(guts)
+        seekable = BytesIO(guts)
 
         chosen = []
         log.msg('Finding candidate plugins...')
@@ -66,7 +66,7 @@ class Parser(object):
             except Exception:
                 l.msg(exc_info=True)
                 prob = 0
-            if prob > 0:
+            if prob is not None and prob > 0:
                 chosen.append((prob, plugin))
 
         if not chosen:

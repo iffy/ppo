@@ -28,7 +28,7 @@ class NmapXMLParser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if 'nmap' in first_part and 'xml' in first_part:
+        if b'nmap' in first_part and b'xml' in first_part:
             return 50
 
     def parse(self, instream):

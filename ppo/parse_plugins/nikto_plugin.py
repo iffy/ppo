@@ -5,6 +5,7 @@ from ppo import plugins
 from ppo.state import Registry
 
 import re
+import codecs
 
 
 
@@ -210,11 +211,11 @@ class NiktoPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if first_part.strip().startswith('- Nikto v'):
+        if first_part.strip().startswith(b'- Nikto v'):
             return 50
 
     def parse(self, instream):
         parser = NiktoParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.dataReceived(line)
         return parser.result

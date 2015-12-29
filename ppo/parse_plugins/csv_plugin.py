@@ -3,8 +3,9 @@
 
 from ppo import plugins
 
-from io import StringIO
+from io import BytesIO
 import csv
+import codecs
 
 
 class CSVParser(plugins.ParserPlugin):
@@ -15,13 +16,13 @@ class CSVParser(plugins.ParserPlugin):
     name = 'csv'
 
     def readProbability(self, instream):
-        d = StringIO()
+        d = BytesIO()
         commas = set()
         for i in range(4):
             line = instream.readline()
             if not line:
                 break
-            commas.add(line.count(','))
+            commas.add(line.count(b','))
             d.write(line)
         try:
             list(csv.DictReader(d))
@@ -35,7 +36,7 @@ class CSVParser(plugins.ParserPlugin):
             pass
 
     def parse(self, instream):
-        parsed = csv.DictReader(instream)
+        parsed = csv.DictReader(codecs.getreader('utf-8')(instream))
         return {
             'data': list(parsed),
         }
