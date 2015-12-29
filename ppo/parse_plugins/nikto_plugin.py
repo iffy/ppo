@@ -5,6 +5,7 @@ from ppo import plugins
 from ppo.state import Registry
 
 import re
+import codecs
 
 
 
@@ -108,7 +109,7 @@ class NiktoParser(object):
 
         errm = self.r_error_summary.match(line)
         if errm:
-            errors, items = map(int, errm.groups())
+            errors, items = list(map(int, errm.groups()))
             meta.update({
                 'errors': errors,
                 'terminated': True,
@@ -119,7 +120,7 @@ class NiktoParser(object):
 
         m = self.r_summary.match(line)
         if m:
-            requests, errors, items = map(int, m.groups())
+            requests, errors, items = list(map(int, m.groups()))
             meta.update({
                 'errors': errors,
                 'total_requests': requests,
@@ -191,7 +192,7 @@ class NiktoParser(object):
 
     def findLinksAndStuff(self, description):
         ret = {}
-        for k,v in self.things_to_find.items():
+        for k,v in list(self.things_to_find.items()):
             found = v.findall(description)
             if found:
                 if k == 'links':
@@ -210,11 +211,11 @@ class NiktoPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if first_part.strip().startswith('- Nikto v'):
+        if first_part.strip().startswith(b'- Nikto v'):
             return 50
 
     def parse(self, instream):
         parser = NiktoParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.dataReceived(line)
         return parser.result

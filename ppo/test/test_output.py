@@ -1,6 +1,7 @@
 from unittest import TestCase
 
-from StringIO import StringIO
+import six
+from io import StringIO
 
 import structlog
 structlog.configure_once(logger_factory=structlog.twisted.LoggerFactory())
@@ -155,10 +156,10 @@ class giganticGrepTest(TestCase):
         Unicode should be okay.
         """
         self.assertValue({
-            'snowman': u'\N{SNOWMAN}',
+            'snowman': six.u('\N{SNOWMAN}'),
             'something': 'not a snowman',
         },
-            u"snowman: \N{SNOWMAN} something: not_a_snowman\n".encode('utf-8'))
+            six.u("snowman: \N{SNOWMAN} something: not_a_snowman\n"))
 
     def test_empty_list(self):
         """

@@ -6,6 +6,7 @@ from ppo import plugins
 from collections import defaultdict
 from functools import wraps
 import re
+import codecs
 
 
 class enum4LinuxParser(object):
@@ -66,7 +67,7 @@ class enum4LinuxParser(object):
     def state_init(self, line):
         if line.startswith('|'):
             title = line.split('|')[1].strip()
-            for key, state in self.sections.items():
+            for key, state in list(self.sections.items()):
                 if title.count(key):
                     self.sections.pop(key)
                     return state
@@ -199,7 +200,7 @@ class enum4LinuxParser(object):
             self.current = {'name': domain}
             pwpol.append(self.current)
         elif getattr(self, 'current', None):
-            for srckey,dstkey in self.tofind.items():
+            for srckey,dstkey in list(self.tofind.items()):
                 if line.count(srckey):
                     value = line.split(':')[-1].strip()
                     if value.lower() in ('none', 'not set'):
@@ -230,7 +231,7 @@ class enum4LinuxParser(object):
         m = self.r_user.match(line)
         if m:
             d = m.groupdict()
-            for k,v in d.items():
+            for k,v in list(d.items()):
                 if v == '(null)':
                     d[k] = None
             users.append(d)
@@ -295,7 +296,7 @@ class enum4LinuxParser(object):
             parts = re.split(r'(-+)', line)[1:]
             self._fields = defaultdict(lambda:0)
             for i,part in enumerate(parts):
-                self._fields[i/2] += len(part)
+                self._fields[i//2] += len(part)
         elif self.substate == 'shares':
             shares = self.result.setdefault('shares', [])
             share = {
@@ -339,11 +340,11 @@ class enum4linuxPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if 'Starting enum4linux' in first_part:
+        if b'Starting enum4linux' in first_part:
             return 50
 
     def parse(self, instream):
         parser = enum4LinuxParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.dataReceived(line.strip())
         return parser.result

@@ -9,6 +9,7 @@ cache:
 env:
   - TOX_ENV=py27
   - TOX_ENV=pyflakes
+  - TOX_ENV=py34
 
 
 install:

@@ -24,7 +24,7 @@ class SQLite3Parser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         firstpart = instream.read(20)
-        if firstpart.startswith('SQLite format 3\x00'):
+        if firstpart.startswith(b'SQLite format 3\x00'):
             return 60
         else:
             return 0

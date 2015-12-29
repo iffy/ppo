@@ -3,10 +3,12 @@
 
 from ppo import plugins
 
-from StringIO import StringIO
+from io import StringIO, BytesIO
 import yaml
 import re
+import six
 import traceback
+import codecs
 
 
 class YAMLParser(plugins.ParserPlugin):
@@ -18,10 +20,10 @@ class YAMLParser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         lines = []
-        for i in xrange(5):
+        for i in range(5):
             lines.append(instream.readline())
         try:
-            yaml.safe_load(StringIO('\n'.join(lines)))
+            yaml.safe_load(BytesIO(six.b('\n').join(lines)))
             return 10
         except yaml.scanner.ScannerError:
             return 0
@@ -38,16 +40,16 @@ class EqualDelimitedPlugin(plugins.ParserPlugin):
 
     name = 'equaldelim'
 
-    r_candidate = re.compile(r'''
+    r_candidate = re.compile(six.b(r'''
         [^=]+?=[.\s]*
-        ''', re.X)
+        '''), re.X)
 
     r_sub = re.compile(r'\n[ \t]*', re.S | re.M)
 
     def readProbability(self, instream):
         # try about 10 lines
         found_match = False
-        for i in xrange(10):
+        for i in range(10):
             line = instream.readline()
             if not line:
                 break
@@ -61,7 +63,7 @@ class EqualDelimitedPlugin(plugins.ParserPlugin):
             return 20
 
     def parse(self, instream):
-        guts = instream.read()
+        guts = codecs.getreader('utf-8')(instream).read()
         guts = guts.replace('=', ': ')
         guts = self.r_sub.sub('\n', guts)
         try:

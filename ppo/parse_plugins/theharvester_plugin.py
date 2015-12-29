@@ -4,6 +4,8 @@
 from ppo import plugins
 from ppo.state import Registry
 
+import codecs
+
 
 class theharvesterParser(object):
 
@@ -64,11 +66,11 @@ class theharvesterPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         preamble = instream.read(560)
-        if 'TheHarvester Ver' in preamble:
+        if b'TheHarvester Ver' in preamble:
             return 50
 
     def parse(self, instream):
         parser = theharvesterParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.lineReceived(line)
         return parser.result

@@ -9,7 +9,7 @@ import os
 
 import structlog
 
-from StringIO import StringIO
+from io import BytesIO
 
 from ppo.parser import parse, parser, NoWillingParsers
 
@@ -34,7 +34,7 @@ ap.add_argument('-v', '--verbose', action='store_true',
     help="Show debug/logging output")
 
 ap.add_argument('-x', '--exclude', action='append',
-    default=filter(None, os.environ.get('PPO_EXCLUDE_PLUGINS', '').split(',')),
+    default=[_f for _f in os.environ.get('PPO_EXCLUDE_PLUGINS', '').split(',') if _f],
     help='Exclude plugins from being used.  Can be specified multiple times.'
          '  Use --ls to get a list of plugin names.  You can also set this '
          'with a comma-delimited list in PPO_EXCLUDE_PLUGINS.'
@@ -47,13 +47,13 @@ def run():
     args = ap.parse_args()
 
     if args.ls:
-        print '\n'.join(parser.listPluginNames())
+        print('\n'.join(parser.listPluginNames()))
         sys.exit(0)
 
     if args.verbose:
         structlog.configure(logger_factory=structlog.PrintLoggerFactory(sys.stderr))
 
-    infile = StringIO(sys.stdin.read())
+    infile = BytesIO(sys.stdin.read())
     try:
         parsed = parse(infile, exclude=args.exclude)
     except NoWillingParsers:
@@ -65,9 +65,9 @@ def run():
             sys.exit(0)
 
     if args.format == 'yaml':
-        print yaml.safe_dump(parsed, default_flow_style=False)
+        print(yaml.safe_dump(parsed, default_flow_style=False))
     elif args.format == 'json':
-        print json.dumps(parsed)
+        print(json.dumps(parsed))
     elif args.format == 'grep':
         from ppo.output import giganticGrep
         giganticGrep(parsed, sys.stdout)

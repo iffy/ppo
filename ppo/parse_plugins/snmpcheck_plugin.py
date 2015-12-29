@@ -6,6 +6,7 @@ from ppo.state import Registry
 
 from functools import wraps
 import re
+import codecs
 
 
 def ignore(error_types):
@@ -329,11 +330,11 @@ class snmpcheckPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         first_part = instream.read(200)
-        if first_part.startswith('snmpcheck'):
+        if first_part.startswith(b'snmpcheck'):
             return 50
 
     def parse(self, instream):
         parser = snmpcheckParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.dataReceived(line)
         return parser.result

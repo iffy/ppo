@@ -3,6 +3,7 @@
 
 from ppo import plugins
 import structlog
+import codecs
 
 logger = structlog.get_logger()
 
@@ -34,7 +35,7 @@ class nbtscanParser(object):
             for label,key in self.labels:
                 starts.append(line.index(label))
             self.ranges = []
-            for i in xrange(len(starts)-1):
+            for i in range(len(starts)-1):
                 self.ranges.append((starts[i], starts[i+1]))
             self.ranges.append((starts[-1],None))
         elif line.startswith('-------'):
@@ -57,11 +58,11 @@ class nbtscanPlugin(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         firstline = instream.readline()
-        if 'NBT name scan' in firstline:
+        if b'NBT name scan' in firstline:
             return 50
 
     def parse(self, instream):
         parser = nbtscanParser()
-        for line in instream:
+        for line in codecs.getreader('utf-8')(instream):
             parser.lineReceived(line)
         return parser.result
