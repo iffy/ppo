@@ -3,7 +3,7 @@
 
 from ppo import plugins
 
-from StringIO import StringIO
+from io import StringIO
 import csv
 
 
@@ -17,7 +17,7 @@ class CSVParser(plugins.ParserPlugin):
     def readProbability(self, instream):
         d = StringIO()
         commas = set()
-        for i in xrange(4):
+        for i in range(4):
             line = instream.readline()
             if not line:
                 break

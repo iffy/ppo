@@ -34,7 +34,7 @@ class nbtscanParser(object):
             for label,key in self.labels:
                 starts.append(line.index(label))
             self.ranges = []
-            for i in xrange(len(starts)-1):
+            for i in range(len(starts)-1):
                 self.ranges.append((starts[i], starts[i+1]))
             self.ranges.append((starts[-1],None))
         elif line.startswith('-------'):

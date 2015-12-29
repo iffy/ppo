@@ -19,10 +19,15 @@ setup(
     install_requires=[
         'PyYaml',
         'lxml',
-        'importlib',
         'structlog',
-        'ordereddict',
+        'six',
     ],
+    extras_require={
+        ':python_version<="2.7"': [
+            'importlib',
+            'ordereddict',
+        ]
+    },
     scripts=[
         'scripts/ppo',
     ]

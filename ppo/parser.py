@@ -6,7 +6,7 @@ import inspect
 import sys
 import importlib
 import traceback
-from StringIO import StringIO
+from io import StringIO
 
 import structlog
 

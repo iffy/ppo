@@ -32,7 +32,7 @@ class Registry(object):
 
         @return: A 2-tuple of bound handler and any associated handler data
         """
-        for pattern, data in self.data.items():
+        for pattern, data in list(self.data.items()):
             if pattern in name:
                 bound = data['func'].__get__(
                     self._instance, self._instance.__class__)

@@ -66,7 +66,7 @@ class enum4LinuxParser(object):
     def state_init(self, line):
         if line.startswith('|'):
             title = line.split('|')[1].strip()
-            for key, state in self.sections.items():
+            for key, state in list(self.sections.items()):
                 if title.count(key):
                     self.sections.pop(key)
                     return state
@@ -199,7 +199,7 @@ class enum4LinuxParser(object):
             self.current = {'name': domain}
             pwpol.append(self.current)
         elif getattr(self, 'current', None):
-            for srckey,dstkey in self.tofind.items():
+            for srckey,dstkey in list(self.tofind.items()):
                 if line.count(srckey):
                     value = line.split(':')[-1].strip()
                     if value.lower() in ('none', 'not set'):
@@ -230,7 +230,7 @@ class enum4LinuxParser(object):
         m = self.r_user.match(line)
         if m:
             d = m.groupdict()
-            for k,v in d.items():
+            for k,v in list(d.items()):
                 if v == '(null)':
                     d[k] = None
             users.append(d)

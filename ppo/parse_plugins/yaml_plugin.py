@@ -3,7 +3,7 @@
 
 from ppo import plugins
 
-from StringIO import StringIO
+from io import StringIO
 import yaml
 import re
 import traceback
@@ -18,7 +18,7 @@ class YAMLParser(plugins.ParserPlugin):
 
     def readProbability(self, instream):
         lines = []
-        for i in xrange(5):
+        for i in range(5):
             lines.append(instream.readline())
         try:
             yaml.safe_load(StringIO('\n'.join(lines)))
@@ -47,7 +47,7 @@ class EqualDelimitedPlugin(plugins.ParserPlugin):
     def readProbability(self, instream):
         # try about 10 lines
         found_match = False
-        for i in xrange(10):
+        for i in range(10):
             line = instream.readline()
             if not line:
                 break
