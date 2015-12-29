@@ -7,7 +7,7 @@ from distutils.core import setup
 
 setup(
     name='ppo',
-    version='0.3.1',
+    version='0.4.0',
     description='Parses Pentesting tools output',
     author='Matt Haggard',
     author_email='haggardii@gmail.com',
