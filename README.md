@@ -7,12 +7,6 @@
 
 # Installation #
 
-Install the latest stable release from PyPi:
-
-    pip install ppo
-
-Or install the most recent stable, unreleased version from GitHub:
-
     pip install git+https://github.com/iffy/ppo.git
 
 # Example #
