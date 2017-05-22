@@ -19,7 +19,7 @@ setup(
     install_requires=[
         'PyYaml',
         'lxml',
-        'structlog',
+        'structlog==16.1.0',
         'six',
     ],
     extras_require={
