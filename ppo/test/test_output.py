@@ -3,9 +3,6 @@ from unittest import TestCase
 import six
 from io import StringIO
 
-import structlog
-structlog.configure_once(logger_factory=structlog.twisted.LoggerFactory())
-
 
 from ppo.output import giganticGrep
 
