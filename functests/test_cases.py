@@ -26,8 +26,6 @@ from collections import defaultdict
 from ppo.parser import parse
 
 import structlog
-structlog.configure(logger_factory=structlog.twisted.LoggerFactory())
-print('configured struclog')
 
 
 r_notalpha = re.compile(r'[^a-zA-Z0-9]', re.S | re.M)
@@ -62,20 +60,20 @@ def diffStrings(a, b, alabel=None, blabel=None):
 def makeTestFunc(name, infile, outfile):
     def func(self):
         structlog.get_logger().msg(testcase=name)
-        fh_i = io.open(infile, 'rb')
-        parsed = parse(fh_i)
+        with io.open(infile, 'rb') as fh_i:
+            parsed = parse(fh_i)
         
         expected_output = None
         if outfile is None:
             self.fail('No expected output file present')
-        fh_o = io.open(outfile, 'rb')
-        if outfile.endswith('yml'):
-            expected_output = yaml.load(fh_o)
-        elif outfile.endswith('json'):
-            expected_output = json.load(fh_o)
-        else:
-            # plain text
-            expected_output = io.open(outfile, 'rb').read()
+        with io.open(outfile, 'rb') as fh_o:
+            if outfile.endswith('yml'):
+                expected_output = yaml.load(fh_o)
+            elif outfile.endswith('json'):
+                expected_output = json.load(fh_o)
+            else:
+                # plain text
+                expected_output = fh_o.read()
 
         # seeing differences in YAML is easier than python dicts
         expected_yaml = yaml.safe_dump(expected_output, default_flow_style=False)
